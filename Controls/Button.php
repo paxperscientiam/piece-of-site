@@ -1,6 +1,6 @@
-<?PHP namespace Zurb\FoundationSites\Controls;
+<?PHP namespace Ramoose\FoundationSites\Controls;
 
-use Zurb\FoundationSites\Foundation;
+use Ramoose\FoundationSites\Foundation;
 
 class Button extends Foundation
 {

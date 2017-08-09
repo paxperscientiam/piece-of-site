@@ -1,6 +1,6 @@
-<?PHP namespace Zurb\FoundationSites\Util;
+<?PHP namespace Ramoose\FoundationSites\Util;
 
-use Zurb\FoundationSites\Foundation;
+use Ramoose\FoundationSites\Foundation;
 
 class Resource extends Foundation
 {

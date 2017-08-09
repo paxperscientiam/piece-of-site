@@ -3,9 +3,9 @@
  * Generate content elements for Foundation for Sites by Zurb.
  */
 
-namespace Zurb\FoundationSites;
+namespace Ramoose\FoundationSites;
 
-use Zurb\FoundationSites\Util\Resource;
+use Ramoose\FoundationSites\Util\Resource;
 
 class Foundation
 {
