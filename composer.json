@@ -1,0 +1,10 @@
+{
+    "name": "ramoose/piece-of-site",
+    "description": "Generate HTML5 element blocks with relative ease.",
+    "license": "GPLv3",
+    "autoload": {
+        "psr-4": {
+            "Ramoose\\PieceOfSite\\": "src/"
+        }
+    }
+}
