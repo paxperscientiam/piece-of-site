@@ -1,5 +1,5 @@
 <?PHP
-namespace App\Moose\SRF;
+namespace Ramoose\PieceOfSite\Util;
 
 class CopyRight
 {

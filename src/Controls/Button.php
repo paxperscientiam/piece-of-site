@@ -1,6 +1,6 @@
-<?PHP namespace Ramoose\FoundationSites\Controls;
+<?PHP namespace Ramoose\PieceOfSite\Controls;
 
-use Ramoose\FoundationSites\Foundation;
+use Ramoose\PieceOfSite\Foundation;
 
 class Button extends Foundation
 {

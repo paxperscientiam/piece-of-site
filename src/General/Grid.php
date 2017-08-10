@@ -1,4 +1,4 @@
-<?php namespace Moose\FoundationSites\General;
+<?php namespace Ramoose\PieceOfSite\General;
 
 class Grid
 {

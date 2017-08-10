@@ -1,6 +1,6 @@
-<?PHP namespace Ramoose\FoundationSites\Util;
+<?PHP namespace Ramoose\PieceOfSite\Util;
 
-use Ramoose\FoundationSites\Foundation;
+use Ramoose\PieceOfSite\Foundation;
 
 class Resource extends Foundation
 {
