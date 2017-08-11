@@ -8,7 +8,10 @@ $menu = new Menu("simple");
 //
 $menu->setLinks([
     "home" => [
-        "NY" => "#",
+        "NY" => [
+            "Albany" => "#",
+            "NYC" => "#"
+        ],
         "VT" => "#"
     ],
     "dino" => "/ca",

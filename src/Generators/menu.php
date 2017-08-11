@@ -121,14 +121,20 @@ class Menu
         $rai = new \RecursiveArrayIterator($links);
         $rii = new \RecursiveIteratorIterator($rai, \RecursiveIteratorIterator::SELF_FIRST);
         //
-        // this is root.
-        while ($rii->valid()) {
+        $rii->next();
+        //
+        $arrDOM = [];
 
+        while ($rii->valid()) {
+            // $element = $this->dom->createElement("li");
+            // $arrDOM[] = $element;
+
+            //////
             $rii->next();
         }
         return $this;
     }
-
+    ////d($this->container->parentNode->parentNode->parentNode);
 
 
     public function addDataAttribute(string $dataAttribute)
