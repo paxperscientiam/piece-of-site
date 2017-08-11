@@ -6,5 +6,8 @@
         "psr-4": {
             "Ramoose\\PieceOfSite\\": "src/"
         }
+    },
+    "require": {
+        "kint-php/kint": "^2.1"
     }
 }

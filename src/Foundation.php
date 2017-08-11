@@ -5,7 +5,7 @@
 
 namespace Ramoose\PieceOfSite\FoundationSites;
 
-use Ramoose\FoundationSites\Util\Resource;
+use Ramoose\PieceOfSite\Util\Resource;
 
 class Foundation
 {
