@@ -2,29 +2,28 @@
 
 require_once "../vendor/autoload.php";
 
-use Ramoose\PieceOfSite\Generators\Menu;
+use Ramoose\PieceOfSite\Generators\Menus\Menu;
 
-$menu = new Menu("simple");
-//
-$menu->setLinks([
-    "home" => [
-        "NY" => [
-            "Albany" => "#",
-            "NYC" => "#"
-        ],
-        "VT" => "#"
-    ],
-    "dino" => "/ca",
-    "logos" => "/ld",
-    "countries" => [
-        "America" => [
-            "NY" => "#",
-            "ND" => [
-                "city1" => "#",
-                "city2" => "#"
-            ]
-        ]
-    ]
-]);
-echo $menu->getHTML();
+
+
+
+
+$menu = Menu::simple()
+    ->addItem("USA")
+    ->addItem("Canada", Menu::subMenu())
+
+    // ->addSubMenu(Menu::subMenu()
+    //              ->addItem("Nova Scotia"))
+    ;
+d($menu);
+// $menu = new Menu("simple");
+// //
+// $menu->addItem('A')
+//     ->addItem('B')
+//     ->addNode('C',addItem("CA"))
+//     ;
+
+// // d("W");
+//d($menu);
+echo $menu->saveHTML();
 ?>

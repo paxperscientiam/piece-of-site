@@ -8,6 +8,9 @@
         }
     },
     "require": {
-        "kint-php/kint": "^2.1"
+    },
+    "require-dev": {
+        "kint-php/kint": "^2.1",
+        "monolog/monolog": "^1.23"
     }
 }
