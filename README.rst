@@ -1,7 +1,8 @@
 Create menus with PHP!
 
-````PHP
-$menu = Menu::simple()
+.. code-block:: PHP
+                   
+   $menu = Menu::simple()
     ->addItem("USA")
     ->addItem("Canada")
     ->addItem(Menu::subMenu("Cities")
@@ -14,7 +15,8 @@ $menu = Menu::simple()
                         ->addItem("Pteranodon")))
     ->addItem("Barf")
     ;
- ````
+ 
 
+    
 
 Disclaimer: Use are your own peril!
