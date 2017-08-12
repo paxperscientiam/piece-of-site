@@ -66,9 +66,24 @@ class Menu
         return new Simple();
     }
 
-    public static function subMenu(): SubMenu
+    public static function dropDown(): DropDown
     {
-        return new SubMenu();
+        return new DropDown();
+    }
+
+    public static function drillDown(): DrillDown
+    {
+        return new DrillDown();
+    }
+
+    public static function accordion(): AccordionMenu
+    {
+        return new AccordionMenu();
+    }
+
+    public static function subMenu(string $heading = ""): SubMenu
+    {
+        return new SubMenu($heading);
     }
 
 

@@ -1,44 +1,44 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
+use Ramoose\PieceOfSite\Generators\Menus\Submenu;
+
 
 class Simple extends Menu
 {
     private $item;
+    private $list = [];
     private $subMenu;
 
-    public function __construct()
-    {
-    }
 
-    public function addItem(string $text, SubMenu $thing = null)
+    /**
+     * @param string|SubMenu
+     */
+    public function addItem($thing)
     {
         $this->item = self::$dom->createElement("li");
-        $this->item->textContent = $text;
-        self::$container->appendChild($this->item);
-        //
-        if ($thing !== null) {
+        if (is_string($thing)) {
 
+            $this->item->textContent = $thing;
+        }
+        if ($thing instanceof SubMenu) {
+            $thing->anchorThis($this->item);
         }
 
+        $this->list[] = $this->item;
         return $this;
     }
 
-    public function addSubMenu(SubMenu $subParent)
+    private function assemble()
     {
-        // d($subParent);die();
-        $this->subMenu = self::$dom->createElement("ul");
-        $this->subMenu->textContent = "submenu";
-
-        $this->item->appendChild($this->subMenu);
-
-        //        $this->subMenu->appendChild($subParent);
-        //
-        return $this;
+        foreach ($this->list as $item) {
+            self::$container->appendChild($item);
+        }
     }
 
     public function saveHTML()
     {
+        $this->assemble();
         return self::$dom->saveHTML();
     }
 }

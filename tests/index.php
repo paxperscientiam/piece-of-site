@@ -4,26 +4,23 @@ require_once "../vendor/autoload.php";
 
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
 
-
-
+use Monolog\Logger;
+use Monolog\ErrorHandler;
+$logger = new Logger('Monologger');
+ErrorHandler::register($logger);
 
 
 $menu = Menu::simple()
     ->addItem("USA")
-    ->addItem("Canada", Menu::subMenu())
-
-    // ->addSubMenu(Menu::subMenu()
-    //              ->addItem("Nova Scotia"))
+    ->addItem("Canada")
+    ->addItem(Menu::subMenu("head")
+              ->addItem("BESTEEE")
+              ->addItem("reversee")
+    )
+    ->addItem("LOVE ME")
     ;
-d($menu);
-// $menu = new Menu("simple");
-// //
-// $menu->addItem('A')
-//     ->addItem('B')
-//     ->addNode('C',addItem("CA"))
-//     ;
 
-// // d("W");
-//d($menu);
+
+
 echo $menu->saveHTML();
 ?>
