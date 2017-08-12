@@ -19,8 +19,8 @@ $menu = Menu::simple()
     )
     ->addItem(Menu::subMenu("Dinosaurs")
               ->addItem("Trex")
-              ->addItem(Menu::subMenu("places")
-                        ->addItem("place on1")))
+              ->addItem(Menu::subMenu("Pterosaur")
+                        ->addItem("Pteranodon")))
     ->addItem("Barf")
     ;
 

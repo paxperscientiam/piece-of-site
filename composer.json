@@ -1,6 +1,12 @@
 {
     "name": "ramoose/piece-of-site",
-    "description": "Generate HTML5 element blocks with relative ease.",
+    "description": "Generate HTML5 element blocks with some ease.",
+    "author": [
+        {
+            "name": "Christopher David Ramos",
+            "email": "chrisdavidramos@paxperscientiam.com"
+        }
+    ],
     "license": "GPLv3",
     "autoload": {
         "psr-4": {
