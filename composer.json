@@ -11,6 +11,7 @@
     },
     "require-dev": {
         "kint-php/kint": "^2.1",
-        "monolog/monolog": "^1.23"
+        "monolog/monolog": "^1.23",
+        "zurb/foundation": "~v6.4"
     }
 }
