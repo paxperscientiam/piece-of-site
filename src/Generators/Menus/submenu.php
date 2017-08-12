@@ -22,11 +22,19 @@ class SubMenu extends Menu
 
     public function addItem($thing)
     {
+
         $this->item = self::$dom->createElement("li");
-        $this->item->textContent = $thing;
+
 
         $this->subMenu->appendChild($this->item);
         // $this->list[] = $this->item;
+        if (is_string($thing)) {
+            $this->item->textContent = $thing;
+        }
+        if ($thing instanceof SubMenu) {
+            $thing->anchorThis($this->item);
+        }
+
         return $this;
     }
 

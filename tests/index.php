@@ -13,11 +13,15 @@ ErrorHandler::register($logger);
 $menu = Menu::simple()
     ->addItem("USA")
     ->addItem("Canada")
-    ->addItem(Menu::subMenu("head")
-              ->addItem("BESTEEE")
-              ->addItem("reversee")
+    ->addItem(Menu::subMenu("Cities")
+              ->addItem("Toronto")
+              ->addItem("Montreal")
     )
-    ->addItem("LOVE ME")
+    ->addItem(Menu::subMenu("Dinosaurs")
+              ->addItem("Trex")
+              ->addItem(Menu::subMenu("places")
+                        ->addItem("place on1")))
+    ->addItem("Barf")
     ;
 
 
