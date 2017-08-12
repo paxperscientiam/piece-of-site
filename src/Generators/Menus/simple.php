@@ -7,9 +7,13 @@ use Ramoose\PieceOfSite\Generators\Menus\Submenu;
 class Simple extends Menu
 {
     private $item;
-    private $list = [];
     private $subMenu;
 
+    public function __construct()
+    {
+        self::$classes[] = "simple";
+        self::$subMenuClasses[] = "nested menu";
+    }
 
     /**
      * @param string|SubMenu
@@ -25,20 +29,8 @@ class Simple extends Menu
             $thing->anchorThis($this->item);
         }
 
-        $this->list[] = $this->item;
+        self::$domList[] = $this->item;
         return $this;
     }
 
-    private function assemble()
-    {
-        foreach ($this->list as $item) {
-            self::$container->appendChild($item);
-        }
-    }
-
-    public function saveHTML()
-    {
-        $this->assemble();
-        return self::$dom->saveHTML();
-    }
 }

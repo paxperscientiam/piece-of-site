@@ -15,8 +15,6 @@ class SubMenu extends Menu
     public function __construct($header)
     {
         $this->subMenu = self::$dom->createElement("ul");
-
-
         $this->header = $header;
     }
 
@@ -38,8 +36,15 @@ class SubMenu extends Menu
         return $this;
     }
 
+    private function setClasses()
+    {
+        $classes = implode(" ", self::$subMenuClasses);
+        $this->subMenu->setAttribute("class", $classes);
+    }
+
     public function anchorThis($item)
     {
+        $this->setClasses();
         $item->textContent = $this->header;
         $item->appendChild($this->subMenu);
     }

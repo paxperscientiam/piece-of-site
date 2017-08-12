@@ -6,12 +6,20 @@ use Ramoose\PieceOfSite\Generators\Menus\SubMenu;
 /**
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
+
+interface MenuInterface
+
+
+
 class Menu
 {
     protected static $dom;
-    protected static $lulz = 66;
-    private static $frag;
     protected static $container;
+    protected static $classes = [];
+    protected static $subMenuClasses = [];
+    protected static $domList = [];
+    //
+    private static $frag;
     private $item;
     private $node;
     private $anchor;
@@ -29,13 +37,12 @@ class Menu
         "drilldown" => "data-drilldown",
         "accordion" => "data-accordion-menu"
     ];
-    private $classes = [];
+
     private $nestedOrientation;
 
 
     public function __construct()
     {
-
     }
 
     protected static function build()
@@ -53,31 +60,29 @@ class Menu
         self::$frag->appendChild(self::$container);
         self::$dom->appendChild(self::$frag);
         // //
-        // $this->lii = $this->dom->createElement("li");
-        // $this->anchor = $this->dom->createElement("a");
-        // //
-        // $this->classes[] = "menu";
     }
 
     public static function simple(): Simple
     {
         self::build();
-        //
         return new Simple();
     }
 
     public static function dropDown(): DropDown
     {
+        self::build();
         return new DropDown();
     }
 
     public static function drillDown(): DrillDown
     {
+        self::build();
         return new DrillDown();
     }
 
     public static function accordion(): AccordionMenu
     {
+        self::build();
         return new AccordionMenu();
     }
 
@@ -101,28 +106,8 @@ class Menu
     //         echo $e->getMessage();
     //     }
     //     //
-    //     $this->dom = new \DOMDocument();
-    //     $this->dom->encoding = 'UTF-8';
-    //     $this->dom->formatOutput = true;
-    //     $this->dom->normalizeDocument();
-    //     //
-    //     $this->frag = $this->dom->createDocumentFragment();
-    //     $this->container = $this->dom->createElement("ul");
-    //     //
-    //     $this->frag->appendChild($this->container);
-    //     $this->dom->appendChild($this->frag);
-    //     //
-    //     $this->lii = $this->dom->createElement("li");
-    //     $this->anchor = $this->dom->createElement("a");
-    //     //
-    //     $this->classes[] = "menu";
-    // }
 
-    // public static function simple()
-    // {
-    //     return new Simple();
     // }
-
 
     // public function align(string $alignment)
     // {
@@ -228,26 +213,38 @@ class Menu
     //     $this->container->appendChild($this->dom->createAttribute($dataAttribute));
     // }
 
-    // private function setClasses()
-    // {
-    //     $classes = implode(" ", $this->classes);
-    //     //
-    //     $this->container->setAttribute("class", $classes);
-    //     //
-    //     if (array_key_exists($this->menuSelection, $this->menuData)) {
-    //         $this->container->appendChild($this->dom->createAttribute($this->menuData[$this->menuSelection]));
-    //     }
-    // }
-    // private function assemble()
-    // {
-    //     //
-    // }
+    private function setClasses()
+    {
+        self::$classes[] = "menu";
+        $classes = implode(" ", self::$classes);
+        //
+        self::$container->setAttribute("class", $classes);
+        //
+        // if (array_key_exists($this->menuSelection, $this->menuData)) {
+        //     $this->container->appendChild($this->dom->createAttribute($this->menuData[$this->menuSelection]));
+        // }
+    }
+
+    private function assemble()
+    {
+        foreach (self::$domList as $item) {
+            self::$container->appendChild($item);
+        }
+    }
+
+    public function addClasses()
+    {
+
+    }
+
+
+
     public function saveHTML()
     {
 
         $this->setClasses();
         $this->assemble();
         //
-        return $this->dom->saveHTML();
+        return self::$dom->saveHTML();
     }
 }

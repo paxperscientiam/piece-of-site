@@ -25,6 +25,5 @@ $menu = Menu::simple()
     ;
 
 
-
 echo $menu->saveHTML();
 ?>
