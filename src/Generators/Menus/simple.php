@@ -1,10 +1,7 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
-use Ramoose\PieceOfSite\Generators\Menus\Menu;
-use Ramoose\PieceOfSite\Generators\Menus\Submenu;
 
-
-class Simple extends Menu
+class Simple extends Menu implements MenuInterface
 {
     private $item;
     private $subMenu;

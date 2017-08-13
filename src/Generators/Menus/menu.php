@@ -1,13 +1,14 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
-use Ramoose\PieceOfSite\Generators\Menus\Simple;
-use Ramoose\PieceOfSite\Generators\Menus\SubMenu;
-
 /**
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
 
-//interface MenuInterface
+interface MenuInterface
+{
+    public function addItem($item);
+
+}
 
 
 
