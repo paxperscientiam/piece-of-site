@@ -7,7 +7,7 @@ use Ramoose\PieceOfSite\Generators\Menus\SubMenu;
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
 
-interface MenuInterface
+//interface MenuInterface
 
 
 

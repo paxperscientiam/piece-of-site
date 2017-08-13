@@ -1,6 +1,6 @@
 <?PHP
 
-require_once "../vendor/autoload.php";
+require_once "../../vendor/autoload.php";
 
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
 
@@ -9,6 +9,7 @@ use Monolog\ErrorHandler;
 $logger = new Logger('Monologger');
 ErrorHandler::register($logger);
 
+///die("LOOL");
 
 $menu = Menu::simple()
     ->addItem("USA")
