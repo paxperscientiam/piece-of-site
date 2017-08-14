@@ -13,19 +13,18 @@ ErrorHandler::register($logger);
 
 
 $menu = Menu::simple()
-      ->addItem("USA")
-      ->addItem("Canada")
-      ->addItem(Menu::subMenu("Cities")
-                ->addItem("Toronto")
-                ->addItem("Montreal")
-      )
-      ->addItem(Menu::subMenu("Dinosaurs")
-                ->addItem("Trex")
-                ->addItem(Menu::subMenu("Pterosaur")
-                          ->addItem("Pteranodon")))
-      ->addItem("Barf")
-      ;
+    ->addItem("USA")
+    ->addItem("Canada")
+    ->addItem(Menu::subMenu("Cities")
+              ->addItem("Toronto")
+              ->addItem("Montreal")
+    )
+    ->addItem(Menu::subMenu("Dinosaurs")
+              ->addItem("Trex")
+              ->addItem(Menu::subMenu("Pterosaur")
+                        ->addItem("Pteranodon")))
+    ->addItem("Barf")
+    ;
 
 
 echo $menu->saveHTML();
-?>

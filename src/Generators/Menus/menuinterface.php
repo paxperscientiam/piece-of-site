@@ -2,5 +2,6 @@
 
 interface MenuInterface
 {
-    public function addItem($item);
+    public function addItem($thing);
+    public function appendSubMenu();
 }

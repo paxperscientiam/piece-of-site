@@ -1,6 +1,6 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
-class Simple extends Menu
+class Simple extends Base
 {
     private $item;
     private $subMenu;

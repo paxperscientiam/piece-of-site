@@ -1,9 +1,5 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
-/**
- * @SuppressWarnings(PHPMD.ElseExpression)
- */
-// implements MenuInterface
 class Menu
 {
 
@@ -41,8 +37,6 @@ class Menu
 
     protected static function build()
     {
-
-
         self::$dom = new \DOMDocument();
         self::$dom->encoding = 'UTF-8';
         self::$dom = new \DOMDocument();
@@ -55,7 +49,6 @@ class Menu
         // //
         self::$frag->appendChild(self::$container);
         self::$dom->appendChild(self::$frag);
-        // //
     }
 
     public static function simple(): Simple
