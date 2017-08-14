@@ -14,6 +14,7 @@
         }
     },
     "require": {
+        "php": ">=7.0"
     },
     "require-dev": {
         "kint-php/kint": "^2.1",

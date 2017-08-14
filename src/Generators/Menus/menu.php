@@ -3,17 +3,10 @@
 /**
  * @SuppressWarnings(PHPMD.ElseExpression)
  */
-
-interface MenuInterface
-{
-    public function addItem($item);
-
-}
-
-
-
+// implements MenuInterface
 class Menu
 {
+
     protected static $dom;
     protected static $container;
     protected static $classes = [];
@@ -48,6 +41,8 @@ class Menu
 
     protected static function build()
     {
+
+
         self::$dom = new \DOMDocument();
         self::$dom->encoding = 'UTF-8';
         self::$dom = new \DOMDocument();

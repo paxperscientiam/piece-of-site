@@ -10,6 +10,7 @@ use Ramoose\PieceOfSite\Util\Resource;
 class Foundation
 {
 
+
     protected $doc;
     protected $html;
     protected $head;
