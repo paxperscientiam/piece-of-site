@@ -1,10 +1,11 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
-class Simple extends Base
+class Dropdown extends Base
 {
     public function __construct()
     {
-        self::$classes[] = "simple";
+        self::$classes[] = "dropdown";
         self::$subMenuClasses[] = "nested menu";
+        self::$menuData[] = "data-dropdown-menu";
     }
 }

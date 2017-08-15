@@ -7,6 +7,7 @@ class Menu
     protected static $container;
     protected static $classes = [];
     protected static $subMenuClasses = [];
+    protected static $menuData = [];
     protected static $domList = [];
     //
     private static $frag;
@@ -22,11 +23,11 @@ class Menu
         "accordion" => "accordion-menu",
         "topbar" => "top-bar"
     ];
-    private $menuData = [
-        "dropdown" => "data-dropdown-menu",
-        "drilldown" => "data-drilldown",
-        "accordion" => "data-accordion-menu"
-    ];
+    // private $menuData = [
+    //     "dropdown" => "data-dropdown-menu",
+    //     "drilldown" => "data-drilldown",
+    //     "accordion" => "data-accordion-menu"
+    // ];
 
     private $nestedOrientation;
 
@@ -49,6 +50,12 @@ class Menu
         // //
         self::$frag->appendChild(self::$container);
         self::$dom->appendChild(self::$frag);
+    }
+
+    public static function basic(): Base
+    {
+        self::build();
+        return new Base();
     }
 
     public static function simple(): Simple
@@ -214,6 +221,13 @@ class Menu
         // }
     }
 
+    private function setData()
+    {
+        $data = implode(" ", self::$menuData);
+
+        self::$container->appendChild(self::$dom->createAttribute($data));
+    }
+
     private function assemble()
     {
         foreach (self::$domList as $item) {
@@ -221,17 +235,11 @@ class Menu
         }
     }
 
-    public function addClasses()
-    {
-
-    }
-
-
-
     public function saveHTML()
     {
 
         $this->setClasses();
+        $this->setData();
         $this->assemble();
         //
         return self::$dom->saveHTML();
