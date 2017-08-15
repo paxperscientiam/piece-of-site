@@ -3,4 +3,5 @@
 interface MenuInterface
 {
     public function addItem($item);
+    public function saveHTML();
 }
