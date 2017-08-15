@@ -11,9 +11,6 @@ class Menu
     protected static $domList = [];
     //
     private static $frag;
-    private $item;
-    private $node;
-    private $anchor;
     //
     private $menuSelection;
     private $menuType = [

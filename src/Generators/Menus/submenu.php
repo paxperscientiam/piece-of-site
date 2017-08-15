@@ -3,7 +3,7 @@
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
 
 
-class SubMenu extends Menu
+class SubMenu extends Base
 {
     private $item;
     private $list = [];
@@ -12,7 +12,7 @@ class SubMenu extends Menu
 
     private $header;
 
-    public function __construct($header)
+    public function __construct(string $header = null)
     {
         $this->subMenu = self::$dom->createElement("ul");
         $this->header = $header;
@@ -36,16 +36,12 @@ class SubMenu extends Menu
         return $this;
     }
 
-    private function setClasses()
-    {
-        $classes = implode(" ", self::$subMenuClasses);
-        $this->subMenu->setAttribute("class", $classes);
-    }
-
     public function anchorThis($item)
     {
+        if (!is_null($this->header)) {
+            $item->textContent = $this->header;
+        }
         $this->setClasses();
-        $item->textContent = $this->header;
         $item->appendChild($this->subMenu);
     }
 }

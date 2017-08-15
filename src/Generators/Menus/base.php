@@ -23,19 +23,17 @@ class Base extends Menu implements MenuInterface
         return $this;
     }
 
-    private function setClasses()
+    protected function setClasses()
     {
         self::$classes[] = "menu";
-        $classes = implode(" ", self::$classes);
-        //
-        self::$container->setAttribute("class", $classes);
-        //
-        // if (array_key_exists($this->menuSelection, $this->menuData)) {
-        //     $this->container->appendChild($this->dom->createAttribute($this->menuData[$this->menuSelection]));
-        // }
+
+        if (!empty(self::$classes)) {
+            $classes = implode(" ", self::$classes);
+            self::$container->setAttribute("class", $classes);
+        }
     }
 
-    private function setData()
+    protected function setData()
     {
         if (!empty(self::$menuData)) {
             $data = implode(" ", self::$menuData);
@@ -43,7 +41,7 @@ class Base extends Menu implements MenuInterface
         }
     }
 
-    private function assemble()
+    protected function assemble()
     {
         foreach (self::$domList as $item) {
             self::$container->appendChild($item);
