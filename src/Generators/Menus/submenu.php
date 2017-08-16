@@ -6,10 +6,7 @@ use Ramoose\PieceOfSite\Generators\Menus\Menu;
 class SubMenu extends Base
 {
     private $item;
-    private $list = [];
-
     private $subMenu;
-
     private $header;
 
     public function __construct(string $header = null)
@@ -18,23 +15,15 @@ class SubMenu extends Base
         $this->header = $header;
     }
 
-    public function addItem($thing)
+    public function addItem($text)
     {
-
         $this->item = self::$dom->createElement("li");
-
-
+        $this->item->textContent = $text;
         $this->subMenu->appendChild($this->item);
-        // $this->list[] = $this->item;
-        if (is_string($thing)) {
-            $this->item->textContent = $thing;
-        }
-        if ($thing instanceof SubMenu) {
-            $thing->anchorThis($this->item);
-        }
-
+        //
         return $this;
     }
+
 
     public function anchorThis($item)
     {
