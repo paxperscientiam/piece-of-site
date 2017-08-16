@@ -109,81 +109,6 @@ class Menu
 
     // }
 
-    // public function align(string $alignment)
-    // {
-    //     try {
-    //         switch ($alignment) {
-    //             case "right":
-    //                 $this->classes[] = "align-right";
-    //                 break;
-    //             case "center":
-    //                 $this->classes[] = "align-center";
-    //                 break;
-    //             case "expanded":
-    //                 $this->classes[] = "expanded";
-    //                 break;
-    //             case "left":
-    //                 // 'left' is the default alignment
-    //                 break;
-    //             default:
-    //                 throw new \Exception("Menu alignment '$alignment' unknown.");
-    //         }
-    //     } catch (\Exception $e) {
-    //         echo $e->getMessage();
-    //     }
-    //     return $this;
-    // }
-
-    // public function orient(string $orientation, $nestedOrientation = "horizontal")
-    // {
-    //     try {
-    //         if (!in_array($nestedOrientation, ["vertical", "horizontal"])) {
-    //             throw new \Exception("Allowed orientation for sub-menus: vertical, horizontal.");
-    //         }
-    //         $this->nestedOrientation = $nestedOrientation;
-    //     } catch (\Exception $e) {
-    //         echo $e->getMessage();
-    //     }
-
-    //     try {
-    //         switch ($orientation) {
-    //             case "v":
-    //             case "vertical":
-    //                 $this->classes[] = "vertical";
-    //                 break;
-    //             case "h":
-    //             case "horizontal":
-    //                 // do nothing cause this is default
-    //                 break;
-    //             default:
-    //                 throw new \Exception("Menu orientation '$orientation' unknown.");
-    //         }
-    //     } catch (\Exception $e) {
-    //         echo $e->getMessage();
-    //     }
-    //     return $this;
-    // }
-
-    // public function addItem(string $text, string $href = "#")
-    // {
-
-    //     $this->item = $this->dom->createElement("li");
-    //     $this->item->textContent = $text;
-    //     $this->item->setAttribute("href", $href);
-    //     //
-    //     $this->container->appendChild($this->item);
-
-    //     return $this;
-    // }
-
-    // public function addNode(string $text)
-    // {
-    //    $this->node = $this->dom->createElement("ul");
-    //    $this->node->textContent = $text;
-    //    $this->item->appendChild($this->node);
-
-    //    return $this;
-    // }
 
 
     // public function setLinks(array $links)
@@ -206,10 +131,4 @@ class Menu
     //     return $this;
     // }
     // ////d($this->container->parentNode->parentNode->parentNode);
-
-
-    // public function addDataAttribute(string $dataAttribute)
-    // {
-    //     $this->container->appendChild($this->dom->createAttribute($dataAttribute));
-    // }
 }

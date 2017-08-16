@@ -12,12 +12,14 @@ ErrorHandler::register($logger);
 
 
 $menu = Menu::simple()
+    ->align("right")
+    ->orient("V")
     ->addItem("USA")
     ->addItem("Canada")
-    ->addItem(Menu::subMenu("Cities")
-              ->addItem("Toronto")
-              ->addItem("Montreal")
-          )
+    // ->addItem(Menu::subMenu("Cities")
+    //           ->addItem("Toronto")
+    //           ->addItem("Montreal")
+    //       )
     // ->addItem(Menu::subMenu("Dinosaurs")
     //           ->addItem("Trex")
     //           ->addItem(Menu::subMenu("Pterosaur")

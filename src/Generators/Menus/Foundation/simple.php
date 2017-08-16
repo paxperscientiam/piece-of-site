@@ -2,7 +2,7 @@
 
 use Ramoose\PieceOfSite\Generators\Menus\Base;
 
-class Simple extends Base
+class Simple extends XForm
 {
     public function __construct()
     {
