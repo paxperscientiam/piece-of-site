@@ -1,5 +1,12 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
+// Foundation menus
+use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
+use Ramoose\PieceOfSite\Generators\Menus\Foundation\Simple;
+use Ramoose\PieceOfSite\Generators\Menus\Foundation\Drilldown;
+use Ramoose\PieceOfSite\Generators\Menus\Foundation\Accordion;
+
+
 class Menu
 {
 

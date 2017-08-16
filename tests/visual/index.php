@@ -11,7 +11,7 @@ $logger = new Logger('Monologger');
 ErrorHandler::register($logger);
 
 
-$menu = Menu::dropdown()
+$menu = Menu::simple()
     ->addItem("USA")
     ->addItem("Canada")
     ->addItem(Menu::subMenu("Cities")
