@@ -38,7 +38,7 @@ class Base extends Menu implements MenuInterface
     protected function setData(\DOMElement $obj, array $data)
     {
         if (!empty($data)) {
-            $data = implode(" ", self::$menuData);
+            $data = implode(" ", $data);
             $obj->appendChild(self::$dom->createAttribute($data));
         }
     }
