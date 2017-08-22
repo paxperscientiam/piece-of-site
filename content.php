@@ -7,11 +7,11 @@ use Monolog\ErrorHandler;
 $logger = new Logger('Monologger');
 ErrorHandler::register($logger);
 
-$menu = Menu::drillDown()
+$menu = Menu::dropDown()
     ->addItem("USA", "/lol.php")
     ->addItem(Menu::subMenu("Canada")
-              ->addItem("Yukon")
-              ->addItem("Quebec"))
+              ->addItem(Menu::subMenu("Hamburger")))
+
     ;
 
 

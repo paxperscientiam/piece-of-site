@@ -17,6 +17,9 @@ Create menus with PHP!
     ;
 
 
+I. Allow for arbitrary class and data
+
+
 
 
 Disclaimer: This library is currently in development phase; there have been no releases as of yet. Use are your own peril!
