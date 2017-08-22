@@ -14,9 +14,9 @@ class Base extends Menu implements MenuInterface
         $this->link = self::$dom->createElement("a");
         //
         $this->link->setAttribute("href", $href);
-        $this->item->appendChild($this->link);
 
         if (is_string($thing)) {
+            $this->item->appendChild($this->link);
             $this->link->textContent = $thing;
         }
         if ($thing instanceof SubMenu) {

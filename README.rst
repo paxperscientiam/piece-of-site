@@ -1,7 +1,7 @@
 Create menus with PHP!
 
 .. code-block:: PHP
-                   
+
    $menu = Menu::simple()
     ->addItem("USA")
     ->addItem("Canada")
@@ -15,8 +15,8 @@ Create menus with PHP!
                         ->addItem("Pteranodon")))
     ->addItem("Barf")
     ;
- 
 
-    
 
-Disclaimer: Use are your own peril!
+
+
+Disclaimer: This library is currently in development phase; there have been no releases as of yet. Use are your own peril!
