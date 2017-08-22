@@ -23,6 +23,6 @@
         "phpunit/phpunit": "^6.2"
     },
     "scripts": {
-        "serve": "@php -S localhost:8000 -t tests/visual/"
+        "serve": "@php -S localhost:8000"
     }
 }
