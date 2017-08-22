@@ -5,13 +5,14 @@ use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\Simple;
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\Drilldown;
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\Accordion;
-
+use Ramoose\PieceOfSite\Generators\Menus\Foundation\Responsive;
 
 class Menu
 {
 
     protected static $dom;
     protected static $container;
+    protected static $subMenu;
     protected static $classes = [];
     protected static $subMenuClasses = [];
     protected static $menuData = [];
@@ -89,6 +90,12 @@ class Menu
     public static function subMenu(string $heading = ""): SubMenu
     {
         return new SubMenu($heading);
+    }
+
+    public static function responsive(string $heading = ""): Responsive
+    {
+        self::build();
+        return new Responsive($heading);
     }
 
 

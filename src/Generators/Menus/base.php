@@ -3,16 +3,21 @@
 class Base extends Menu implements MenuInterface
 {
     private $item;
+    private $link;
 
     /**
      * @param string|SubMenu
      */
-    public function addItem($thing)
+    public function addItem($thing, string $href = "#")
     {
         $this->item = self::$dom->createElement("li");
+        $this->link = self::$dom->createElement("a");
+        //
+        $this->link->setAttribute("href", $href);
+        $this->item->appendChild($this->link);
 
         if (is_string($thing)) {
-            $this->item->textContent = $thing;
+            $this->link->textContent = $thing;
         }
         if ($thing instanceof SubMenu) {
             $thing->anchorThis($this->item);

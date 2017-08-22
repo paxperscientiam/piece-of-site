@@ -2,16 +2,14 @@
 
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
 
-
 class SubMenu extends Base
 {
     private $item;
-    private $subMenu;
     private $header;
 
     public function __construct(string $header = null)
     {
-        $this->subMenu = self::$dom->createElement("ul");
+        self::$subMenu = self::$dom->createElement("ul");
         $this->header = $header;
     }
 
@@ -19,18 +17,25 @@ class SubMenu extends Base
     {
         $this->item = self::$dom->createElement("li");
         $this->item->textContent = $text;
-        $this->subMenu->appendChild($this->item);
+        self::$subMenu->appendChild($this->item);
         //
         return $this;
     }
 
+    private function setSubMenuClasses()
+    {
+        if (!empty(self::$subMenuClasses)) {
+            $classes = implode(" ", self::$subMenuClasses);
+            self::$subMenu->setAttribute("class", $classes);
+        }
+    }
 
     public function anchorThis($item)
     {
         if (!is_null($this->header)) {
             $item->textContent = $this->header;
         }
-        $this->setClasses();
-        $item->appendChild($this->subMenu);
+        $this->setSubMenuClasses();
+        $item->appendChild(self::$subMenu);
     }
 }

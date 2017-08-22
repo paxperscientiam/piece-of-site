@@ -1,23 +1,24 @@
 <?PHP
-
 require_once "vendor/autoload.php";
+?>
+<!doctype html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8"/>
 
-use Ramoose\PieceOfSite\Generators\Menus\Menu;
+    <link rel="stylesheet" href="vendor/zurb/foundation/dist/css/foundation.min.css" />
+    <script src="vendor/components/jquery/jquery.min.js"></script>
 
-use Monolog\Logger;
-use Monolog\ErrorHandler;
+    <title>Document</title>
+    </head>
+    <body>
+    <?PHP
+    require_once "content.php";
 
-$logger = new Logger('Monologger');
-ErrorHandler::register($logger);
-
-
-$menu = Menu::simple()
-    ->align("right")
-    ->orient("V")
-    ->addItem("USA")
-    ->addItem("Canada")
-
-    ;
-
-
-echo $menu->saveHTML();
+    ?>
+    <script src="vendor/zurb/foundation/dist/js/foundation.min.js"></script>
+    <script>
+    $(document).foundation();
+</script>
+ </body>
+</html>
