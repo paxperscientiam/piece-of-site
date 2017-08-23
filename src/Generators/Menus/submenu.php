@@ -5,10 +5,11 @@ use Ramoose\PieceOfSite\Generators\Menus\Menu;
 class SubMenu extends Base
 {
     private $anchorLink;
+    private $subMenu;
 
     public function __construct(string $header = null)
     {
-        self::$subMenu = self::$dom->createElement("ul");
+        $this->subMenu = self::$dom->createElement("ul");
         if (!is_null($header)) {
             $this->anchorLink = self::$dom->createElement("a");
             $this->anchorLink->textContent = $header;
@@ -20,7 +21,8 @@ class SubMenu extends Base
 
         $item->appendChild($this->anchorLink);
         //
-        $this->setClasses(self::$subMenu, self::$subMenuClasses);
-        $item->appendChild(self::$subMenu);
+        $this->setClasses($this->subMenu, self::$subMenuClasses);
+        $item->appendChild($this->subMenu);
     }
+    //    return $this;
 }

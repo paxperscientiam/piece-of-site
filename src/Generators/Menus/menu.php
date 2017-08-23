@@ -12,7 +12,7 @@ class Menu
 
     protected static $dom;
     protected static $container;
-    protected static $subMenu;
+    //    protected static $subMenu;
     protected static $classes = [];
     protected static $subMenuClasses = [];
     protected static $menuData = [];

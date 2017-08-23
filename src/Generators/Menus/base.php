@@ -7,36 +7,53 @@ class Base extends Menu implements MenuInterface
      */
     public function addItem($thing, string $href = "#")
     {
-        $reflect = new \ReflectionClass(get_called_class());
-        $item = self::$dom->createElement("li");
-        $link = self::$dom->createElement("a");
-
-        if ($reflect->getShortName() === 'SubMenu') {
-            //
-            $link->setAttribute("href", $href);
-
-            if (is_string($thing)) {
-                $link->textContent = $thing;
-            }
-
-            $item->appendChild($link);
-
-
-            self::$subMenu->appendChild($item);
-
+        if ($thing instanceof SubMenu) {
             return $this;
         }
-        //
-        $link->setAttribute("href", $href);
 
-        if (is_string($thing)) {
-            $item->appendChild($link);
-            $link->textContent = $thing;
-        }
-        if ($thing instanceof SubMenu) {
-            $thing->anchorThis($item);
-        }
-        self::$domList[] = $item;
+
+
+        // $reflect = new \ReflectionClass(get_called_class());
+        // $item = self::$dom->createElement("li");
+        // $link = self::$dom->createElement("a");
+        // $link->setAttribute("href", $href);
+
+        // if ($thing instanceof SubMenu) {
+        //     $thing->anchorThis($item);
+        // }
+
+
+        // if ($reflect->getShortName() === 'SubMenu') {
+        //     //            d($thing);
+        // }
+        // if ($reflect->getShortName() === 'SubMenu') {
+        //     //
+        //     $item->appendChild($link);
+
+        //     if (is_string($thing)) {
+        //         d($thing);
+        //         $link->textContent = $thing;
+        //     }
+        //     if ($thing instanceof SubMenu) {
+        //         d($thing->subMenu);
+        //         //$thing->appendChild($item);
+        //     }
+
+        //     //            $subMenu->appendChild($item);
+
+        //     return $this;
+        // }
+        // //
+        // if (is_string($thing)) {
+        //     d($thing);
+        //     $item->appendChild($link);
+        //     $link->textContent = $thing;
+        // }
+        // if ($thing instanceof SubMenu) {
+        //     $thing->anchorThis($item);
+        // }
+        // self::$domList[] = $item;
+
         return $this;
     }
 

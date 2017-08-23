@@ -7,13 +7,19 @@ use Monolog\ErrorHandler;
 $logger = new Logger('Monologger');
 ErrorHandler::register($logger);
 
+
+
+
 $menu = Menu::dropDown()
     ->addItem("USA", "/lol.php")
     ->addItem("Moon", "/june.php")
-    ->addItem(Menu::subMenu("Canada")
-              ->addItem("LOL", "lulz")
-              ->addItem("shit"))
+    // ->addItem(Menu::subMenu("this is fine")
+    //           ->addItem("find"))
+    // ->addItem(Menu::subMenu("not fine")
+    //           ->addItem(Menu::subMenu("bile")
+    //                     ->addItem("lasjfljkasf")))
     ;
+
 
 
 echo $menu->saveHTML();
