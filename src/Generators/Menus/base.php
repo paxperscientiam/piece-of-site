@@ -7,52 +7,28 @@ class Base extends Menu implements MenuInterface
      */
     public function addItem($thing, string $href = "#")
     {
-        if ($thing instanceof SubMenu) {
-            return $this;
+        $item = self::$dom->createElement("li");
+        $link = self::$dom->createElement("a");
+
+        $link->setAttribute("href", $href);
+        $item->appendChild($link);
+
+        $reflect = new \ReflectionClass(get_called_class());
+        if ($reflect->getShortName() === 'SubMenu') {
+            $this->subMenu->appendChild($item);
         }
 
+        if ($thing instanceof SubMenu) {
+            $link = $thing->anchorThisTo($item);
+        }
 
+        if (is_string($thing)) {
+            $link->textContent = $thing;
+        }
 
-        // $reflect = new \ReflectionClass(get_called_class());
-        // $item = self::$dom->createElement("li");
-        // $link = self::$dom->createElement("a");
-        // $link->setAttribute("href", $href);
-
-        // if ($thing instanceof SubMenu) {
-        //     $thing->anchorThis($item);
-        // }
-
-
-        // if ($reflect->getShortName() === 'SubMenu') {
-        //     //            d($thing);
-        // }
-        // if ($reflect->getShortName() === 'SubMenu') {
-        //     //
-        //     $item->appendChild($link);
-
-        //     if (is_string($thing)) {
-        //         d($thing);
-        //         $link->textContent = $thing;
-        //     }
-        //     if ($thing instanceof SubMenu) {
-        //         d($thing->subMenu);
-        //         //$thing->appendChild($item);
-        //     }
-
-        //     //            $subMenu->appendChild($item);
-
-        //     return $this;
-        // }
-        // //
-        // if (is_string($thing)) {
-        //     d($thing);
-        //     $item->appendChild($link);
-        //     $link->textContent = $thing;
-        // }
-        // if ($thing instanceof SubMenu) {
-        //     $thing->anchorThis($item);
-        // }
-        // self::$domList[] = $item;
+        if ($reflect->getShortName() === 'Dropdown') {
+            self::$domList[] = $item;
+        }
 
         return $this;
     }

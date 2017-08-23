@@ -5,7 +5,7 @@ use Ramoose\PieceOfSite\Generators\Menus\Menu;
 class SubMenu extends Base
 {
     private $anchorLink;
-    private $subMenu;
+    protected $subMenu;
 
     public function __construct(string $header = null)
     {
@@ -16,13 +16,11 @@ class SubMenu extends Base
         }
     }
 
-    public function anchorThis($item)
+    public function anchorThisTo($item)
     {
-
         $item->appendChild($this->anchorLink);
         //
         $this->setClasses($this->subMenu, self::$subMenuClasses);
         $item->appendChild($this->subMenu);
     }
-    //    return $this;
 }
