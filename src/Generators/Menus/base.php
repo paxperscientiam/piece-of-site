@@ -14,15 +14,17 @@ class Base extends Menu implements MenuInterface
         $item->appendChild($link);
 
         $reflect = new \ReflectionClass(get_called_class());
+
         if ($reflect->getShortName() === 'SubMenu') {
             $this->subMenu->appendChild($item);
         }
 
         if ($thing instanceof SubMenu) {
-            $link = $thing->anchorThisTo($item);
+            $thing->anchorThisTo($item, $link);
         }
 
         if (is_string($thing)) {
+            //            d($thing);
             $link->textContent = $thing;
         }
 

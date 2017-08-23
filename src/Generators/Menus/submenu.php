@@ -9,18 +9,20 @@ class SubMenu extends Base
 
     public function __construct(string $header = null)
     {
+        $this->header = $header;
         $this->subMenu = self::$dom->createElement("ul");
         if (!is_null($header)) {
             $this->anchorLink = self::$dom->createElement("a");
-            $this->anchorLink->textContent = $header;
+            $this->anchorLink->textContent = $this->header;
         }
     }
 
-    public function anchorThisTo($item)
+    public function anchorThisTo($item, $link)
     {
-        $item->appendChild($this->anchorLink);
-        //
-        $this->setClasses($this->subMenu, self::$subMenuClasses);
+        $link->textContent = $this->header;
+        //        $this->anchorLink->textContent = "NOPE";
+        //        $item->appendChild($this->anchorLink);
         $item->appendChild($this->subMenu);
+        $this->setClasses($this->subMenu, self::$subMenuClasses);
     }
 }

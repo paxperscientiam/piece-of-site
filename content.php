@@ -18,7 +18,11 @@ $menu = Menu::dropDown()
               ->addItem("Tony"))
     ->addItem(Menu::subMenu("Mars")
               ->addItem("Deimos")
-              ->addItem("Phoebe"))
+              ->addItem(Menu::subMenu("Friends")
+                        ->addItem(Menu::subMenu("Phoebe")
+                                  ->addItem("tall")
+                                  ->addItem("female"))
+                        ->addItem("Ross")))
 
 
 
