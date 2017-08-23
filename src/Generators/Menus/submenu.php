@@ -15,25 +15,6 @@ class SubMenu extends Base
         }
     }
 
-    public function addItem($thing, string $href = "#")
-    {
-        $item = self::$dom->createElement("li");
-        $link = self::$dom->createElement("a");
-        //
-        $link->setAttribute("href", $href);
-
-        if (is_string($thing)) {
-            $link->textContent = $thing;
-        }
-
-        $item->appendChild($link);
-
-
-        self::$subMenu->appendChild($item);
-
-        return $this;
-    }
-
     public function anchorThis($item)
     {
 

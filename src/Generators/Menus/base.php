@@ -3,12 +3,29 @@
 class Base extends Menu implements MenuInterface
 {
     /**
-     * @param string|SubMenu
+     * @param string|SubMenu, string
      */
     public function addItem($thing, string $href = "#")
     {
+        $reflect = new \ReflectionClass(get_called_class());
         $item = self::$dom->createElement("li");
         $link = self::$dom->createElement("a");
+
+        if ($reflect->getShortName() === 'SubMenu') {
+            //
+            $link->setAttribute("href", $href);
+
+            if (is_string($thing)) {
+                $link->textContent = $thing;
+            }
+
+            $item->appendChild($link);
+
+
+            self::$subMenu->appendChild($item);
+
+            return $this;
+        }
         //
         $link->setAttribute("href", $href);
 
