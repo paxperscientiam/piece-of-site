@@ -25,6 +25,7 @@ class SubMenu extends Base
             $anchorLink->textContent = $this->header;
             $item->appendChild($anchorLink);
         }
+        //
         $this->setClasses(self::$subMenu, self::$subMenuClasses);
         $item->appendChild(self::$subMenu);
     }
