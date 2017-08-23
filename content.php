@@ -11,8 +11,8 @@ $menu = Menu::dropDown()
     ->addItem("USA", "/lol.php")
     ->addItem("Moon", "/june.php")
     ->addItem(Menu::subMenu("Canada")
-              ->addItem("LOL")
-              ->addItem("SIT"))
+              ->addItem("LOL", "lulz")
+              ->addItem("shit"))
     ;
 
 
