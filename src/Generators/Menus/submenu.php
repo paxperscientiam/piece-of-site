@@ -12,6 +12,11 @@ class SubMenu extends Base
         $this->header = $header;
     }
 
+    public function addItem($thing)
+    {
+        return $this;
+    }
+
     public function anchorThis($item)
     {
         $anchorLink = self::$dom->createElement("a");

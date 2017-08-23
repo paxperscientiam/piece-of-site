@@ -18,11 +18,11 @@ class Base extends Menu implements MenuInterface
         if (is_string($thing)) {
             $this->item->appendChild($this->link);
             $this->link->textContent = $thing;
+            self::$domList[] = $this->item;
         }
-        if ($thing instanceof SubMenu) {
-            $thing->anchorThis($this->item);
-        }
-        self::$domList[] = $this->item;
+        // if ($thing instanceof SubMenu) {
+        //     $thing->anchorThis($this->item);
+        // }
         return $this;
     }
 

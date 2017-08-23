@@ -9,9 +9,10 @@ ErrorHandler::register($logger);
 
 $menu = Menu::dropDown()
     ->addItem("USA", "/lol.php")
+    ->addItem("Moon", "/june.php")
     ->addItem(Menu::subMenu("Canada")
-              ->addItem(Menu::subMenu("Hamburger")))
-
+              ->addItem("LOL")
+              ->addItem("SIT"))
     ;
 
 
