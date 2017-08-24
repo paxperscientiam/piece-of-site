@@ -13,9 +13,9 @@ class Menu
         return new Base();
     }
 
-    public static function simple(): Simple
+    public static function simple(): Base
     {
-        return new Simple();
+        return new Base(new Simple());
     }
 
     public static function dropDown(): Base
@@ -23,24 +23,24 @@ class Menu
         return new Base(new DropDown());
     }
 
-    public static function drillDown(): DrillDown
+    public static function drillDown(): Base
     {
-        return new DrillDown();
+        return new Base(new DrillDown());
     }
 
-    public static function accordion(): AccordionMenu
+    public static function accordion(): Base
     {
-        return new AccordionMenu();
+        return new Base(new AccordionMenu());
     }
 
-    public static function subMenu(string $heading = ""): SubMenu
+    public static function subMenu(string $heading = ""): Base
     {
-        return new SubMenu($heading);
+        return new Base(new SubMenu($heading));
     }
 
     public static function responsive(string $heading = ""): Responsive
     {
-        return new Responsive($heading);
+        return new Base(new Responsive($heading));
     }
 
     public static function __callStatic($name, $arguments)
