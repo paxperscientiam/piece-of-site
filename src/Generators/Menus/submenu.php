@@ -13,6 +13,7 @@ class SubMenu extends Base
 
     protected function anchorThisTo($item, $link, $dom)
     {
+        d($dom);die();
         $subMenu = $dom->createElement("ul");
         if (!is_null($this->header)) {
             $anchorLink = $dom->createElement("a");

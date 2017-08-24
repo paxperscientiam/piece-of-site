@@ -8,7 +8,7 @@ class Menu
 {
     protected $base;
 
-    public static function basic(): Base
+    protected static function basic(): Base
     {
         return new Base();
     }
@@ -33,14 +33,15 @@ class Menu
         return new Base(new AccordionMenu());
     }
 
-    public static function subMenu(string $heading = ""): Base
-    {
-        return new Base(new SubMenu($heading));
-    }
-
     public static function responsive(string $heading = ""): Responsive
     {
         return new Base(new Responsive($heading));
+    }
+    //
+    //
+    public static function subMenu(string $heading = ""): Base
+    {
+        return new SubMenu($heading);
     }
 
     public static function __callStatic($name, $arguments)

@@ -46,7 +46,7 @@ class Base extends Menu implements MenuInterface
         }
 
         if ($thing instanceof SubMenu) {
-            $thing->anchorThisTo($item, $link, $this->dom);
+            $thing->anchorOBThisTo($item, $link, $this->dom);
         }
         if (is_string($thing)) {
             $link->textContent = $thing;
