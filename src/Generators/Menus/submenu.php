@@ -4,25 +4,27 @@ use Ramoose\PieceOfSite\Generators\Menus\Menu;
 
 class SubMenu extends Base
 {
-    private $anchorLink;
-    protected $subMenu;
+    private $header;
 
     public function __construct(string $header = null)
     {
         $this->header = $header;
-        $this->subMenu = self::$dom->createElement("ul");
-        if (!is_null($header)) {
-            $this->anchorLink = self::$dom->createElement("a");
-            $this->anchorLink->textContent = $this->header;
-        }
     }
 
-    public function anchorThisTo($item, $link)
+    protected function anchorThisTo($item, $link, $dom)
     {
+        $subMenu = $dom->createElement("ul");
+        if (!is_null($this->header)) {
+            $anchorLink = $dom->createElement("a");
+            $anchorLink->textContent = $this->header;
+        }
         $link->textContent = $this->header;
-        //        $this->anchorLink->textContent = "NOPE";
-        //        $item->appendChild($this->anchorLink);
-        $item->appendChild($this->subMenu);
-        $this->setClasses($this->subMenu, self::$subMenuClasses);
+        $anchorLink->textContent = "NOPE";
+        $item->appendChild($anchorLink);
+        $item->appendChild($subMenu);
+        d($this->subMenuClasses);
+        $this->setClasses($subMenu, $this->subMenuClasses);
+        //
+        return $this;
     }
 }

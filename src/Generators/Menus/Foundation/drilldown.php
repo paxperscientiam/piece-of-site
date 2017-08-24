@@ -6,8 +6,10 @@ class Drilldown extends Base
 {
     public function __construct()
     {
-        self::$classes[] = "drilldown";
-        self::$subMenuClasses[] = "nested vertical menu";
-        self::$menuData[] = "data-drilldown";
+        $this->classes[] = "drilldown";
+        $this->subMenuClasses[] = "nested vertical menu";
+        $this->menuData[] = "data-drilldown";
+        //
+        return $this;
     }
 }

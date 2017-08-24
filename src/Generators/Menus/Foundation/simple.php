@@ -2,11 +2,13 @@
 
 use Ramoose\PieceOfSite\Generators\Menus\Base;
 
-class Simple extends XForm
+class Simple extends Base
 {
     public function __construct()
     {
-        self::$classes[] = "simple";
-        self::$subMenuClasses[] = "nested menu";
+        $this->classes[] = "simple";
+        $this->subMenuClasses[] = "nested menu";
+        //
+        return $this;
     }
 }
