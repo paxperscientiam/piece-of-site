@@ -29,8 +29,10 @@ use Monolog\ErrorHandler;
 $m = Menu::dropDown()
     ->addItem("hello")
     ->addItem("byebye")
-    //    ->addItem(Menu::subMenu("SUBBB"))
-    ;
+    ->addItem("bones")
+    ->addItem(Menu::subMenu("SUBBB")
+
+    );
 
 
 echo $m->saveHTML();

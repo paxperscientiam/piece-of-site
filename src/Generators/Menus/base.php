@@ -39,14 +39,9 @@ class Base extends Menu implements MenuInterface
         $link->setAttribute("href", $href);
         $item->appendChild($link);
 
-        $reflect = new \ReflectionClass(get_called_class());
-
-        if ($reflect->getShortName() === 'SubMenu') {
-            $this->subMenu->appendChild($item);
-        }
-
         if ($thing instanceof SubMenu) {
-            $thing->anchorOBThisTo($item, $link, $this->dom);
+            $this->setClasses($item, $this->objMenu->subMenuClasses);
+            $thing->anchorThisTo($item, $link, $this->dom);
         }
         if (is_string($thing)) {
             $link->textContent = $thing;
