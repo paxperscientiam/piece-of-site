@@ -36,7 +36,6 @@ class SubMenu extends Base
         $link->textContent = $thing;
         $item->appendChild($link);
         $this->subContainer->appendChild($item);
-        d($this->subDom->saveHTML());
         return $this;
     }
 

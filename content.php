@@ -16,11 +16,7 @@ $m = Menu::dropDown()
     ->addItem("hello")
     ->addItem("byebye")
     ->addItem("bones")
-    ->addItem(Menu::subMenu("LOL")
-              ->addItem("LOL1")
-              ->addItem("LOL2")
-    )
-    ->addItem("FIGHT")
+    ->addItem(Menu::subMenu("LOL"))
     ;
 
 

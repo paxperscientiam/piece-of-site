@@ -50,22 +50,26 @@ class Base extends Menu implements MenuInterface
             }
         }
         if ($thing instanceof SubMenu) {
-            $item = $this->dom->createElement("li");
-            $link = $this->dom->createElement("a");
+            $subDom = $thing->subDom;
+            $subItem = $subDom->createElement("li");
+            $subLink = $subDom->createElement("a");
 
-            $link->setAttribute("href", $href);
-            $item->appendChild($link);
-            $this->subMenu = $this->dom->createElement("ul");
-            $item->appendChild($this->subMenu);
-            $this->setClasses($this->subMenu, $this->objMenu->subMenuClasses);
-            $this->setData($this->subMenu, $this->objMenu->subMenuData);
-            $thing->anchorThisTo($link, $this->dom);
+            $this->importNode($subItem);
+            //
+            // $link->setAttribute("href", $href);
+            // $item->appendChild($link);
+            // $this->subMenu = $this->dom->createElement("ul");
+            // $item->appendChild($this->subMenu);
+            // $this->setClasses($this->subMenu, $this->objMenu->subMenuClasses);
+            // $this->setData($this->subMenu, $this->objMenu->subMenuData);
+            // $thing->anchorThisTo($link, $this->dom);
         }
         if (is_string($thing)) {
             $link->textContent = $thing;
         }
         // might condition test NOT submenu...
         $this->domList[] = $item;
+
         return $this;
     }
 
@@ -86,6 +90,11 @@ class Base extends Menu implements MenuInterface
         }
     }
 
+    private function importNode($subItem)
+    {
+        $this->dom->importNode($subItem, TRUE);
+    }
+
     private function assemble()
     {
         foreach ($this->domList as $item) {
@@ -101,10 +110,5 @@ class Base extends Menu implements MenuInterface
         $this->assemble();
         //
         return $this->dom->saveHTML();
-    }
-
-    public function __invoke()
-    {
-        return $this;
     }
 }
