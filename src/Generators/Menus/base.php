@@ -36,7 +36,6 @@ class Base extends Menu implements MenuInterface
      */
     public function addItem($thing, string $href = "#")
     {
-        //  d("parent",$thing, $this);
         if (!($thing instanceof SubMenu)) {
             $item = $this->dom->createElement("li");
             $link = $this->dom->createElement("a");
@@ -48,27 +47,32 @@ class Base extends Menu implements MenuInterface
                 d($thing, $this, get_called_class());
                 return $this;
             }
+            $this->domList[] = $item;
         }
         if ($thing instanceof SubMenu) {
             $subDom = $thing->subDom;
             $subItem = $subDom->createElement("li");
             $subLink = $subDom->createElement("a");
-
-            $this->importNode($subItem);
+            $subLink->setAttribute("href", $href);
+            $subLink->textContent = $thing->header;
+            $subItem->appendChild($subLink);
+            $thing->subContainer->appendChild($subItem);
+            $this->setClasses($thing->subContainer, $this->objMenu->subMenuClasses);
+            $this->setData($thing->subContainer, $this->objMenu->subMenuData);
+            $node = $this->importNode($thing->subContainer);
+            $this->domList[] = $node;
             //
-            // $link->setAttribute("href", $href);
-            // $item->appendChild($link);
+            //
+            //
             // $this->subMenu = $this->dom->createElement("ul");
             // $item->appendChild($this->subMenu);
-            // $this->setClasses($this->subMenu, $this->objMenu->subMenuClasses);
-            // $this->setData($this->subMenu, $this->objMenu->subMenuData);
+            //
             // $thing->anchorThisTo($link, $this->dom);
         }
         if (is_string($thing)) {
             $link->textContent = $thing;
         }
         // might condition test NOT submenu...
-        $this->domList[] = $item;
 
         return $this;
     }
@@ -92,7 +96,7 @@ class Base extends Menu implements MenuInterface
 
     private function importNode($subItem)
     {
-        $this->dom->importNode($subItem, TRUE);
+        return $this->dom->importNode($subItem, true);
     }
 
     private function assemble()
