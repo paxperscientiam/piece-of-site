@@ -9,15 +9,15 @@ use Monolog\ErrorHandler;
 // ErrorHandler::register($logger);
 
 $m = Menu::dropdown()
-    ->addItem("")
-    ->addItem("byebye")
-    ->addItem("bones")
-    ->addItem(Menu::subMenu("Sub Header")
-              ->addItem("hi")
-              ->addItem("shalom")
+    ->addItem("Polaris")
+    ->addItem("Pollux")
+    ->addItem("Andromeda")
+    ->addItem(Menu::subMenu("Sol")
+              ->addItem("Mercury")
+              ->addItem("Venus")
     )
-    ->addItem("SHIT")
-    ->addItem("BALLS")
+    ->addItem("Anger")
+    ->addItem("Sadness")
     ;
 
 
