@@ -5,10 +5,13 @@ class Base extends Menu implements MenuInterface
     protected $dom;
     protected $container;
     protected $frag;
+    protected $subMenu;
     //
     protected $classes = [];
     protected $subMenuClasses = [];
+    //
     protected $menuData = [];
+    protected $subMenuData = [];
     protected $domList = [];
     //
     protected $objMenu;
@@ -21,10 +24,10 @@ class Base extends Menu implements MenuInterface
         $this->dom->encoding = 'UTF-8';
         $this->dom->formatOutput = true;
         $this->dom->normalizeDocument();
-        // //
+        //
         $this->frag = $this->dom->createDocumentFragment();
         $this->container = $this->dom->createElement("ul");
-        // //
+        //
         $this->frag->appendChild($this->container);
         $this->dom->appendChild($this->frag);
     }
@@ -33,21 +36,37 @@ class Base extends Menu implements MenuInterface
      */
     public function addItem($thing, string $href = "#")
     {
-        $item = $this->dom->createElement("li");
-        $link = $this->dom->createElement("a");
+        //  d("parent",$thing, $this);
+        // if (!($thing instanceof SubMenu)) {
+        //     $item = $this->dom->createElement("li");
+        //     $link = $this->dom->createElement("a");
 
-        $link->setAttribute("href", $href);
-        $item->appendChild($link);
+        //     $link->setAttribute("href", $href);
+        //     $item->appendChild($link);
+        //     $reflected = (new \ReflectionClass($this))->getShortName();
+        //     if ($reflected === "SubMenu") {
+        //         d($thing, $this, get_called_class());
+        //         return $this;
+        //     }
+        // }
+        // if ($thing instanceof SubMenu) {
+        //     d($thing, $this->dom);
+        //               $item = $this->dom->createElement("li");
+        //     $link = $this->dom->createElement("a");
 
-        if ($thing instanceof SubMenu) {
-            $this->setClasses($item, $this->objMenu->subMenuClasses);
-            $thing->anchorThisTo($item, $link, $this->dom);
-        }
-        if (is_string($thing)) {
-            $link->textContent = $thing;
-        }
-        // might condition test NOT submenu...
-        $this->domList[] = $item;
+        //     $link->setAttribute("href", $href);
+        //     $item->appendChild($link);
+        //     $this->subMenu = $this->dom->createElement("ul");
+        //     $item->appendChild($this->subMenu);
+        //     $this->setClasses($this->subMenu, $this->objMenu->subMenuClasses);
+        //     $this->setData($this->subMenu, $this->objMenu->subMenuData);
+        //     $thing->anchorThisTo($link, $this->dom);
+        // }
+        // if (is_string($thing)) {
+        //     $link->textContent = $thing;
+        // }
+        // // might condition test NOT submenu...
+        // $this->domList[] = $item;
         return $this;
     }
 
@@ -68,7 +87,7 @@ class Base extends Menu implements MenuInterface
         }
     }
 
-    protected function assemble()
+    private function assemble()
     {
         foreach ($this->domList as $item) {
             $this->container->appendChild($item);
@@ -83,5 +102,10 @@ class Base extends Menu implements MenuInterface
         $this->assemble();
         //
         return $this->dom->saveHTML();
+    }
+
+    public function __invoke()
+    {
+        return $this;
     }
 }

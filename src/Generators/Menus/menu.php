@@ -6,8 +6,6 @@ use Ramoose\PieceOfSite\Generators\Menus\Foundation\{Dropdown, Simple, Drilldown
 
 class Menu
 {
-    protected $base;
-
     protected static function basic(): Base
     {
         return new Base();
@@ -52,7 +50,6 @@ class Menu
             throw new \Exception($msg);
         } catch (\Exception $e) {
             echo $e->getMessage();
-            exit;
         }
     }
 }

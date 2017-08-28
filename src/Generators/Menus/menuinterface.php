@@ -2,6 +2,6 @@
 
 interface MenuInterface
 {
-    function addItem($item);
-    function saveHTML();
+    public function addItem($item);
+    public function saveHTML();
 }

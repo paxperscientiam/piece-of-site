@@ -7,9 +7,8 @@ class Dropdown extends Base
     public function __construct()
     {
         $this->classes[] = "dropdown";
-        $this->subMenuClasses[] = "nested menu";
-        $this->menuData[] = "data-dropdown-menu";
+        $this->subMenuClasses[] = "menu nested";
         //
-        return $this;
+        $this->menuData[] = "data-dropdown-menu";
     }
 }

@@ -1,5 +1,7 @@
 <?PHP
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
+use Ramoose\PieceOfSite\Generators\Menus\SubMenu;
+
 
 use Monolog\Logger;
 use Monolog\ErrorHandler;
@@ -10,29 +12,16 @@ use Monolog\ErrorHandler;
 
 
 
-
-// menu = Menu::dropDown()
- //    ->addItem("USA", "/lol.php")
- //    ->addItem("Moon", "/june.php")
- //    ->addItem(Menu::subMenu("Saturn")
- //              ->addItem("Titan")
- //              ->addItem("Tony"))
- //    ->addItem(Menu::subMenu("Mars")
- //              ->addItem("Deimos")
- //              ->addItem(Menu::subMenu("Friends")
- //                        ->addItem(Menu::subMenu("Phoebe")
- //                                  ->addItem("tall")
- //                                  ->addItem("female"))
- //                        ->addItem("Ross")))
- //    ;
-
 $m = Menu::dropDown()
     ->addItem("hello")
     ->addItem("byebye")
     ->addItem("bones")
-    ->addItem(Menu::subMenu("SUBBB")
-
-    );
+    ->addItem(Menu::subMenu("LOL")
+              ->addItem("LOL1")
+              ->addItem("LOL2")
+    )
+    ->addItem("FIGHT")
+    ;
 
 
 echo $m->saveHTML();
