@@ -15,14 +15,12 @@ class SubMenu extends Base
         $this->header = $header;
         //
         $this->subDom = new \DOMDocument();
-        $this->subDom = new \DOMDocument();
         $this->subDom->encoding = 'UTF-8';
         $this->subDom->formatOutput = true;
         $this->subDom->normalizeDocument();
         //
         $this->subFrag = $this->subDom->createDocumentFragment();
         $this->subContainer = $this->subDom->createElement("ul");
-        //
         $this->subFrag->appendChild($this->subContainer);
         $this->subDom->appendChild($this->subFrag);
     }
@@ -33,7 +31,7 @@ class SubMenu extends Base
         $link = $this->subDom->createElement("a");
         $link->textContent = $thing;
         $item->appendChild($link);
-        $this->subContainer->appendChild($item);
+        //        $item->appendChild($this->subContainer);
         return $this;
     }
 

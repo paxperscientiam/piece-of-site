@@ -8,15 +8,14 @@ use Monolog\ErrorHandler;
 // $logger = new Logger('Monologger');
 // ErrorHandler::register($logger);
 
-
-
-$m = Menu::drilldown()
+$m = Menu::dropdown()
     ->addItem("hello")
     ->addItem("byebye")
     ->addItem("bones")
-    ->addItem(Menu::subMenu("LOL")
-              ->addItem("SHIT")
-              ->addItem("BALLS"))
+    ->addItem(Menu::subMenu("Sub Header")
+              // ->addItem("SHIT")
+              // ->addItem("BALLS")
+    )
     ;
 
 

@@ -6,8 +6,8 @@ class Simple extends Base
 {
     public function __construct()
     {
-        $this->classes[] = "simple";
-        $this->subMenuClasses[] = "nested menu";
+        $this->classes[] = "menu simple";
+        $this->subMenuClasses[] = "menu nested";
         //
         return $this;
     }

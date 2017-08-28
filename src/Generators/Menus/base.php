@@ -36,44 +36,26 @@ class Base extends Menu implements MenuInterface
      */
     public function addItem($thing, string $href = "#")
     {
-        if (!($thing instanceof SubMenu)) {
-            $item = $this->dom->createElement("li");
-            $link = $this->dom->createElement("a");
-
-            $link->setAttribute("href", $href);
-            $item->appendChild($link);
-            $reflected = (new \ReflectionClass($this))->getShortName();
-            if ($reflected === "SubMenu") {
-                d($thing, $this, get_called_class());
-                return $this;
-            }
-            $this->domList[] = $item;
-        }
+        $link = $this->dom->createElement("a");
+        $link->setAttribute("href", $href);
+        //
+        $item = $this->dom->createElement("li");
+        //
+        $item->appendChild($link);
+        //
         if ($thing instanceof SubMenu) {
-            $subDom = $thing->subDom;
-            $subItem = $subDom->createElement("li");
-            $subLink = $subDom->createElement("a");
-            $subLink->setAttribute("href", $href);
-            $subLink->textContent = $thing->header;
-            $subItem->appendChild($subLink);
-            $thing->subContainer->appendChild($subItem);
-            $this->setClasses($thing->subContainer, $this->objMenu->subMenuClasses);
-            $this->setData($thing->subContainer, $this->objMenu->subMenuData);
             $node = $this->importNode($thing->subContainer);
-            $this->domList[] = $node;
+            $link->textContent = $thing->header;
+            $item->appendChild($node);
+            $this->domList[] = $item;
             //
-            //
-            //
-            // $this->subMenu = $this->dom->createElement("ul");
-            // $item->appendChild($this->subMenu);
-            //
-            // $thing->anchorThisTo($link, $this->dom);
+            return $this;
         }
         if (is_string($thing)) {
             $link->textContent = $thing;
         }
-        // might condition test NOT submenu...
-
+        $this->domList[] = $item;
+        //
         return $this;
     }
 
