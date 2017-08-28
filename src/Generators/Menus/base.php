@@ -37,36 +37,35 @@ class Base extends Menu implements MenuInterface
     public function addItem($thing, string $href = "#")
     {
         //  d("parent",$thing, $this);
-        // if (!($thing instanceof SubMenu)) {
-        //     $item = $this->dom->createElement("li");
-        //     $link = $this->dom->createElement("a");
+        if (!($thing instanceof SubMenu)) {
+            $item = $this->dom->createElement("li");
+            $link = $this->dom->createElement("a");
 
-        //     $link->setAttribute("href", $href);
-        //     $item->appendChild($link);
-        //     $reflected = (new \ReflectionClass($this))->getShortName();
-        //     if ($reflected === "SubMenu") {
-        //         d($thing, $this, get_called_class());
-        //         return $this;
-        //     }
-        // }
-        // if ($thing instanceof SubMenu) {
-        //     d($thing, $this->dom);
-        //               $item = $this->dom->createElement("li");
-        //     $link = $this->dom->createElement("a");
+            $link->setAttribute("href", $href);
+            $item->appendChild($link);
+            $reflected = (new \ReflectionClass($this))->getShortName();
+            if ($reflected === "SubMenu") {
+                d($thing, $this, get_called_class());
+                return $this;
+            }
+        }
+        if ($thing instanceof SubMenu) {
+            $item = $this->dom->createElement("li");
+            $link = $this->dom->createElement("a");
 
-        //     $link->setAttribute("href", $href);
-        //     $item->appendChild($link);
-        //     $this->subMenu = $this->dom->createElement("ul");
-        //     $item->appendChild($this->subMenu);
-        //     $this->setClasses($this->subMenu, $this->objMenu->subMenuClasses);
-        //     $this->setData($this->subMenu, $this->objMenu->subMenuData);
-        //     $thing->anchorThisTo($link, $this->dom);
-        // }
-        // if (is_string($thing)) {
-        //     $link->textContent = $thing;
-        // }
-        // // might condition test NOT submenu...
-        // $this->domList[] = $item;
+            $link->setAttribute("href", $href);
+            $item->appendChild($link);
+            $this->subMenu = $this->dom->createElement("ul");
+            $item->appendChild($this->subMenu);
+            $this->setClasses($this->subMenu, $this->objMenu->subMenuClasses);
+            $this->setData($this->subMenu, $this->objMenu->subMenuData);
+            $thing->anchorThisTo($link, $this->dom);
+        }
+        if (is_string($thing)) {
+            $link->textContent = $thing;
+        }
+        // might condition test NOT submenu...
+        $this->domList[] = $item;
         return $this;
     }
 

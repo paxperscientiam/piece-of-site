@@ -23,12 +23,19 @@ class SubMenu extends Base
         $this->subFrag = $this->subDom->createDocumentFragment();
         $this->subContainer = $this->subDom->createElement("ul");
         //
+        $this->subContainer->setAttribute("class", "SHIOSDFJSJLDF");
+        //
         $this->subFrag->appendChild($this->subContainer);
         $this->subDom->appendChild($this->subFrag);
     }
 
     public function addItem($thing)
     {
+        $item = $this->subDom->createElement("li");
+        $link = $this->subDom->createElement("a");
+        $link->textContent = $thing;
+        $item->appendChild($link);
+        $this->subContainer->appendChild($item);
         d($this->subDom->saveHTML());
         return $this;
     }
