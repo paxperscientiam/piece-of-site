@@ -18,6 +18,10 @@ $m = Menu::dropdown()
     )
     ->addItem("Anger")
     ->addItem("Sadness")
+    ->addItem(Menu::subMenu("Books")
+              ->addItem("Lord of the Rings")
+              ->addItem("Lord of the Flies")
+    )
     ;
 
 

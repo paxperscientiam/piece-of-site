@@ -44,6 +44,7 @@ class Base extends Menu implements MenuInterface
         $item->appendChild($link);
         //
         if ($thing instanceof SubMenu) {
+            $this->setClasses($thing->subContainer, $this->objMenu->subMenuClasses);
             $node = $this->importNode($thing->subContainer);
             $link->textContent = $thing->header;
             $item->setAttribute("class", "is-dropdown-submenu-parent");
