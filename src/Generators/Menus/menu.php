@@ -1,6 +1,5 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
-use League\Container\Container;
 
 
 // @codingStandardsIgnoreStart
@@ -9,15 +8,9 @@ use Ramoose\PieceOfSite\Generators\Menus\Foundation\{Dropdown, Simple, Drilldown
 
 class Menu
 {
-    public $container;
     //
     public function __construct()
     {
-        $this->container = new Container;
-        // Required to enable auto wiring.
-        $this->container->delegate(
-            new \League\Container\ReflectionContainer
-        );
     }
 
     protected static function basic(): Base
@@ -27,21 +20,11 @@ class Menu
 
     public static function simple()
     {
-        $container->add('menu', 'Ramoose\PieceOfSite\Generators\Menus\Foundation\Simple');
-        return new Base($container);
+
     }
 
-    public static function dropDown(): Base
+    public static function dropDown()
     {
-        $container = (new Menu())->container;
-
-        $container->add("menu", function () {
-            return new \Ramoose\PieceOfSite\Generators\Menus\Base(
-                new \Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown
-            );
-        });
-        // this actually triggers things...hmm
-        return $container->get('menu');
     }
 
     public static function drillDown(): Base

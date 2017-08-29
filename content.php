@@ -1,6 +1,9 @@
 <?PHP
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
 
+use Ramoose\PieceOfSite\Generators\Menus\Document;
+
+
 use Monolog\Logger;
 use Monolog\ErrorHandler;
 
@@ -8,15 +11,16 @@ use Monolog\ErrorHandler;
 // $logger = new Logger('Monologger');
 // ErrorHandler::register($logger);
 
+$d = new Document;
+$menu = $d->createChunk("ul");
+$li = $d->createElement("li");
+$li2 = $d->createElement("li");
+
+$d->appendChild([$li, $li2,], $menu);
+
+d($d->saveHTML());
 
 $m = Menu::dropDown()
-    ->addItem("farts")
-    ->addItem("tarts")
-    ->addItem(Menu::subMenu("LOOOL")
-              ->addItem("BALLS")
-              ->addItem("SHIT")
-              ->addItem("SDFS")
-    )
     ;
 
 
@@ -38,4 +42,4 @@ $m = Menu::dropDown()
 //     ;
 
 
-echo $m->saveHTML();
+//echo $m->saveHTML();

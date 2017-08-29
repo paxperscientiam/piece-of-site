@@ -16,7 +16,8 @@
     "require": {
         "php": ">=7.0",
         "php-di/php-di": "^5.4",
-        "league/container": "^2.4"
+        "league/container": "^2.4",
+        "rdlowrey/auryn": "^1.4"
     },
     "require-dev": {
         "kint-php/kint": "^2.1",

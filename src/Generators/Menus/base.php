@@ -1,7 +1,5 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
-use League\Container\Container;
-
 class Base extends Menu implements MenuInterface
 {
     protected $dom;
@@ -18,8 +16,9 @@ class Base extends Menu implements MenuInterface
     //
     public $objMenu;
 
-    public function __construct($objMenu)
+    public function __construct()
     {
+        die("no");
         $this->objMenu = $objMenu;
         //
         $this->dom = new \DOMDocument();
