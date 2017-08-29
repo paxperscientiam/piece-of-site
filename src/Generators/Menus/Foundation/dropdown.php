@@ -2,8 +2,9 @@
 
 use Ramoose\PieceOfSite\Generators\Menus\MenuInterface;
 use Ramoose\PieceOfSite\Generators\Menus\Base;
+use Ramoose\PieceOfSite\Generators\Menus\BaseInterface;
 
-class Dropdown extends Base implements MenuInterface
+class Dropdown extends Base
 {
     protected $base;
     //

@@ -2,28 +2,30 @@
 
 class Base
 {
-    protected $dom;
-    protected $frag;
-    protected $subMenu;
-    //
+    // protected $dom;
+    // protected $frag;
+    // protected $subMenu;
+    // //
+    // protected $menu;
+    // protected $classes = [];
+    // protected $subMenuClasses = [];
+    // //
+    // protected $menuData = [];
+    // protected $subMenuData = [];
+    // protected $domList = [];
+    // //
+    // public $objMenu;
     protected $menu;
-    protected $classes = [];
-    protected $subMenuClasses = [];
-    //
-    protected $menuData = [];
-    protected $subMenuData = [];
-    protected $domList = [];
-    //
-    public $objMenu;
 
 
-    public function __construct()
+    public function __construct(Document $menu)
     {
+        $this->menu = $menu;
     }
 
     public function addItem($item)
     {
-
+        die("BITCH");
     }
 
     public function saveHTML()

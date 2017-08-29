@@ -15,11 +15,12 @@ use Monolog\ErrorHandler;
 
 ///////////////
 
-$d = new Dropdown(new Base);
 
-
+$menu = Menu::dropdown();
+d($menu);
 
     // $m = Menu::dropdown()
+
 //     ->addItem("Polaris")
 //     ->addItem("Pollux")
 //     ->addItem("Andromeda")
