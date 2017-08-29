@@ -8,7 +8,5 @@ class Simple extends Base
     {
         $this->classes[] = "menu simple";
         $this->subMenuClasses[] = "menu nested";
-        //
-        return $this;
     }
 }

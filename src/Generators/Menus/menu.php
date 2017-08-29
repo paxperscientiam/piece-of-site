@@ -1,24 +1,47 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
+use League\Container\Container;
+
+
 // @codingStandardsIgnoreStart
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\{Dropdown, Simple, Drilldown, Accordion, Responsive};
 // @codingStandardsIgnoreEnd
 
 class Menu
 {
+    public $container;
+    //
+    public function __construct()
+    {
+        $this->container = new Container;
+        // Required to enable auto wiring.
+        $this->container->delegate(
+            new \League\Container\ReflectionContainer
+        );
+    }
+
     protected static function basic(): Base
     {
         return new Base();
     }
 
-    public static function simple(): Base
+    public static function simple()
     {
-        return new Base(new Simple());
+        $container->add('menu', 'Ramoose\PieceOfSite\Generators\Menus\Foundation\Simple');
+        return new Base($container);
     }
 
     public static function dropDown(): Base
     {
-        return new Base(new DropDown());
+        $container = (new Menu())->container;
+
+        $container->add("menu", function () {
+            return new \Ramoose\PieceOfSite\Generators\Menus\Base(
+                new \Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown
+            );
+        });
+        // this actually triggers things...hmm
+        return $container->get('menu');
     }
 
     public static function drillDown(): Base
@@ -42,14 +65,14 @@ class Menu
         return new SubMenu($heading);
     }
 
-    public static function __callStatic($name, $arguments)
-    {
-        $thisClass = get_called_class();
-        $msg = "Uknown static method called on $thisClass: '$name' ";
-        try {
-            throw new \Exception($msg);
-        } catch (\Exception $e) {
-            echo $e->getMessage();
-        }
-    }
+    // public static function __callStatic($name, $arguments)
+    // {
+    //     $thisClass = get_called_class();
+    //     $msg = "Uknown static method called on $thisClass: '$name' ";
+    //     try {
+    //         throw new \Exception($msg);
+    //     } catch (\Exception $e) {
+    //         echo $e->getMessage();
+    //     }
+    // }
 }

@@ -29,8 +29,15 @@ class SubMenu extends Base
     {
         $item = $this->subDom->createElement("li");
         $link = $this->subDom->createElement("a");
-        $link->textContent = $thing;
+        if (is_string($thing)) {
+            $link->textContent = $thing;
+        }
+        if ($thing instanceof SubMenu) {
+            $this->hoistSubMenu($thing, $item, $link);
+        }
+
         $item->appendChild($link);
+
         $this->subContainer->appendChild($item);
         //
         return $this;

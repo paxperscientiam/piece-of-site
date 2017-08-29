@@ -1,12 +1,14 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
+use League\Container\Container;
+
 class Base extends Menu implements MenuInterface
 {
     protected $dom;
-    protected $container;
     protected $frag;
     protected $subMenu;
     //
+    protected $menu;
     protected $classes = [];
     protected $subMenuClasses = [];
     //
@@ -14,7 +16,7 @@ class Base extends Menu implements MenuInterface
     protected $subMenuData = [];
     protected $domList = [];
     //
-    protected $objMenu;
+    public $objMenu;
 
     public function __construct($objMenu)
     {
@@ -26,9 +28,9 @@ class Base extends Menu implements MenuInterface
         $this->dom->normalizeDocument();
         //
         $this->frag = $this->dom->createDocumentFragment();
-        $this->container = $this->dom->createElement("ul");
+        $this->menu = $this->dom->createElement("ul");
         //
-        $this->frag->appendChild($this->container);
+        $this->frag->appendChild($this->menu);
         $this->dom->appendChild($this->frag);
     }
     /**
@@ -44,19 +46,32 @@ class Base extends Menu implements MenuInterface
         $item->appendChild($link);
         //
         if ($thing instanceof SubMenu) {
-            $this->setClasses($thing->subContainer, $this->objMenu->subMenuClasses);
-            $node = $this->importNode($thing->subContainer);
-            $link->textContent = $thing->header;
-            $item->setAttribute("class", "is-dropdown-submenu-parent");
-            $item->appendChild($node);
-            $this->domList[] = $item;
-            //
+            $this->hoistSubMenu($thing, $link, $item);
             return $this;
         }
         if (is_string($thing)) {
             $link->textContent = $thing;
         }
         $this->domList[] = $item;
+        //
+        return $this;
+    }
+
+    protected function hoistSubMenu($thing, $link, $item)
+    {
+
+        //        $reflect = new \ReflectionClass(get_called_class());
+        //
+        if (!is_null($this->objMenu)) {
+            $this->setClasses($thing->subContainer, $this->objMenu->subMenuClasses);
+            $node = $this->importNode($thing->subContainer);
+            $link->textContent = $thing->header;
+
+            // this is only for dropdown
+            //$item->setAttribute("class", "is-dropdown-submenu-parent");
+            $item->appendChild($node);
+            $this->domList[] = $item;
+        }
         //
         return $this;
     }
@@ -86,15 +101,15 @@ class Base extends Menu implements MenuInterface
     private function assemble()
     {
         foreach ($this->domList as $item) {
-            $this->container->appendChild($item);
+            $this->menu->appendChild($item);
         }
     }
 
     public function saveHTML()
     {
         $this->classes[] = "menu";
-        $this->setClasses($this->container, $this->objMenu->classes);
-        $this->setData($this->container, $this->objMenu->menuData);
+        $this->setClasses($this->menu, $this->objMenu->classes);
+        $this->setData($this->menu, $this->objMenu->menuData);
         $this->assemble();
         //
         return $this->dom->saveHTML();
