@@ -1,6 +1,8 @@
 <?PHP
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
+use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
 
+use Ramoose\PieceOfSite\Generators\Menus\Base;
 use Ramoose\PieceOfSite\Generators\Menus\Document;
 
 
@@ -11,21 +13,9 @@ use Monolog\ErrorHandler;
 // $logger = new Logger('Monologger');
 // ErrorHandler::register($logger);
 
-$d = new Document;
-$menu = $d->createChunk("ul");
-$li = $d->createElement("li");
-$li2 = $d->createElement("li");
-$li3 = $d->createElement("li");
+///////////////
 
-$d->appendChild($li, $menu);
-$d->appendChild($li2, $li);
-$d->appendChild($li3, $li2);
-
-
-d($d->saveHTML());
-
-$m = Menu::dropDown()
-    ;
+$d = new Dropdown(new Base);
 
 
 

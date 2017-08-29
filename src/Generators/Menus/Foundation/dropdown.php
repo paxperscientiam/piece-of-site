@@ -1,8 +1,9 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus\Foundation;
 
+use Ramoose\PieceOfSite\Generators\Menus\MenuInterface;
 use Ramoose\PieceOfSite\Generators\Menus\Base;
 
-class Dropdown
+class Dropdown extends Base implements MenuInterface
 {
     protected $base;
     //
@@ -17,7 +18,5 @@ class Dropdown
         $this->classes[] = "menu dropdown";
         $this->subMenuClasses[] = "menu";
         $this->menuData[] = "data-dropdown-menu";
-        //
-        return $this;
     }
 }
