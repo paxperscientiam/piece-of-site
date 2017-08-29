@@ -15,8 +15,12 @@ $d = new Document;
 $menu = $d->createChunk("ul");
 $li = $d->createElement("li");
 $li2 = $d->createElement("li");
+$li3 = $d->createElement("li");
 
-$d->appendChild([$li, $li2,], $menu);
+$d->appendChild($li, $menu);
+$d->appendChild($li2, $li);
+$d->appendChild($li3, $li2);
+
 
 d($d->saveHTML());
 

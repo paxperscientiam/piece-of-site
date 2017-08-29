@@ -27,6 +27,14 @@ class Document
         return $this->dom->createElement($tag);
     }
 
+    public function createNElements(array $tags)
+    {
+        foreach ($tags as $tag) {
+            $elements[] = $this->dom->createElement($tag);
+        }
+        return $elements;
+    }
+
     public function appendChild($child, \DOMElement $parent)
     {
         if ($child instanceof \DOMElement) {
@@ -41,7 +49,6 @@ class Document
     {
         foreach ($children as $child) {
             if ($child instanceof \DOMElement) {
-                d($child);
                 $parent->appendChild($child);
             }
         }
