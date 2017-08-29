@@ -15,17 +15,21 @@ class Base
     // protected $domList = [];
     // //
     // public $objMenu;
-    protected $menu;
 
-
+    // autowiring
+    public $menu;
+    //
+    //
     public function __construct(Document $menu)
     {
         $this->menu = $menu;
+        //
+        //
+        $this->bbb = 3242342;
     }
 
     public function addItem($item)
     {
-        die("BITCH");
     }
 
     public function saveHTML()

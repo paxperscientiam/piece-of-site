@@ -16,7 +16,8 @@ use Monolog\ErrorHandler;
 ///////////////
 
 
-$menu = Menu::dropdown();
+$menu = Menu::dropdown()
+   ;
 d($menu);
 
     // $m = Menu::dropdown()

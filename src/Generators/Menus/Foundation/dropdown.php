@@ -6,14 +6,16 @@ use Ramoose\PieceOfSite\Generators\Menus\BaseInterface;
 
 class Dropdown extends Base
 {
-    protected $base;
+    // autowiring
+    public $base;
     //
-    protected $classes = [];
-    protected $subClasses = [];
-    protected $menuData = [];
+    public $classes = [];
+    public $subClasses = [];
+    public $menuData = [];
 
     public function __construct(Base $base)
     {
+        // for autowire
         $this->base = $base;
         //
         $this->classes[] = "menu dropdown";

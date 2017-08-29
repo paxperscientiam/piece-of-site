@@ -7,7 +7,7 @@ use Ramoose\PieceOfSite\Generators\Menus\Document;
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\{Dropdown, Simple, Drilldown, Accordion, Responsive};
 // @codingStandardsIgnoreEnd
 
-class Menu
+class Menu extends Base
 {
     protected static function basic(): Base
     {
@@ -21,7 +21,14 @@ class Menu
 
     public static function dropDown()
     {
-        return new Dropdown(new Base(new Document));
+        $container = new \League\Container\Container;
+        // autowiring
+        $container->delegate(
+            new \League\Container\ReflectionContainer
+        );
+
+        $result = $container->get('Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown');
+        return $result;
     }
 
     // public static function drillDown(): Base
@@ -45,14 +52,14 @@ class Menu
         return new SubMenu($heading);
     }
 
-    // public static function __callStatic($name, $arguments)
-    // {
-    //     $thisClass = get_called_class();
-    //     $msg = "Uknown static method called on $thisClass: '$name' ";
-    //     try {
-    //         throw new \Exception($msg);
-    //     } catch (\Exception $e) {
-    //         echo $e->getMessage();
-    //     }
-    // }
+    public static function __callStatic($name, $arguments)
+    {
+        $thisClass = get_called_class();
+        $msg = "Uknown static method called on $thisClass: '$name' ";
+        try {
+            throw new \Exception($msg);
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }
