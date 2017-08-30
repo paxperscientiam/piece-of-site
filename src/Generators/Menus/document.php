@@ -11,15 +11,15 @@ class Document
         $this->dom->encoding = 'UTF-8';
         $this->dom->formatOutput = true;
         $this->dom->normalizeDocument();
+        //
+        $this->frag = $this->dom->createDocumentFragment();
     }
 
     public function createChunk(string $tag)
     {
-        $this->frag = $this->dom->createDocumentFragment();
         $element = $this->dom->createElement($tag);
         $this->frag->appendChild($element);
         $this->dom->appendChild($this->frag);
-        return $element;
     }
 
     public function createElement(string $tag)
@@ -35,10 +35,14 @@ class Document
         return $elements;
     }
 
-    public function appendChild($child, \DOMElement $parent)
+    public function appendChildX($child, $parent = null)
     {
+        if (is_null($parent)) {
+            $parent = $this->frag;
+        }
         if ($child instanceof \DOMElement) {
             $parent->appendChild($child);
+            $this->dom->appendChild($this->frag);
         }
         if (is_array($child)) {
             $this->appendChildren($child, $parent);

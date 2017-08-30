@@ -1,137 +1,148 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
-class Base
+use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
+
+class Base extends Document
 {
-    // protected $dom;
-    // protected $frag;
-    // protected $subMenu;
-    // //
-    // protected $menu;
-    // protected $classes = [];
-    // protected $subMenuClasses = [];
-    // //
-    // protected $menuData = [];
-    // protected $subMenuData = [];
-    // protected $domList = [];
-    // //
-    // public $objMenu;
+// protected $dom;
+// protected $frag;
+// protected $subMenu;
+// //
+// protected $menu;
+// protected $classes = [];
+// protected $subMenuClasses = [];
+// //
+// protected $menuData = [];
+// protected $subMenuData = [];
+// protected $domList = [];
+// //
+// public $objMenu;
 
-    // autowiring
-    public $menu;
-    //
-    //
-    public function __construct(Document $menu)
-    {
-        $this->menu = $menu;
-        //
-        //
-        $this->bbb = 3242342;
-    }
+// autowiring
+public $menu;
+public $doc;
+//
+//
+public function __construct(Document $menu, Dropdown $m)
+{
+$this->doc = $m;
+$this->menu = $menu;
+$this->menu->createChunk("ul");
 
-    public function addItem($item)
-    {
-    }
+$lii = $this->menu->createElement("li");
+$this->menu->appendChildX($lii);
+}
 
-    public function saveHTML()
-    {
+public function addItem($text)
+{
+$lii = $this->menu->createElement("li");
+$lii->textContent = $text;
+//
+$this->menu->appendChildX($lii);
 
-    }
+return $this;
+}
 
-    // public function __construct()
-    // {
-    //     die("no");
-    //     $this->objMenu = $objMenu;
-    //     //
-    //     $this->dom = new \DOMDocument();
-    //     $this->dom->encoding = 'UTF-8';
-    //     $this->dom->formatOutput = true;
-    //     $this->dom->normalizeDocument();
-    //     //
-    //     $this->frag = $this->dom->createDocumentFragment();
-    //     $this->menu = $this->dom->createElement("ul");
-    //     //
-    //     $this->frag->appendChild($this->menu);
-    //     $this->dom->appendChild($this->frag);
-    // }
-    // /**
-    //  * @param string|SubMenu, string
-    //  */
-    // public function addItem($thing, string $href = "#")
-    // {
-    //     $link = $this->dom->createElement("a");
-    //     $link->setAttribute("href", $href);
-    //     //
-    //     $item = $this->dom->createElement("li");
-    //     //
-    //     $item->appendChild($link);
-    //     //
-    //     if ($thing instanceof SubMenu) {
-    //         $this->hoistSubMenu($thing, $link, $item);
-    //         return $this;
-    //     }
-    //     if (is_string($thing)) {
-    //         $link->textContent = $thing;
-    //     }
-    //     $this->domList[] = $item;
-    //     //
-    //     return $this;
-    // }
+public function saveHTML()
+{
+return $this->menu->saveHTML();
+}
 
-    // protected function hoistSubMenu($thing, $link, $item)
-    // {
+// public function __construct()
+// {
+//     die("no");
+//     $this->objMenu = $objMenu;
+//     //
+//     $this->dom = new \DOMDocument();
+//     $this->dom->encoding = 'UTF-8';
+//     $this->dom->formatOutput = true;
+//     $this->dom->normalizeDocument();
+//     //
+//     $this->frag = $this->dom->createDocumentFragment();
+//     $this->menu = $this->dom->createElement("ul");
+//     //
+//     $this->frag->appendChild($this->menu);
+//     $this->dom->appendChild($this->frag);
+// }
+// /**
+//  * @param string|SubMenu, string
+//  */
+// public function addItem($thing, string $href = "#")
+// {
+//     $link = $this->dom->createElement("a");
+//     $link->setAttribute("href", $href);
+//     //
+//     $item = $this->dom->createElement("li");
+//     //
+//     $item->appendChild($link);
+//     //
+//     if ($thing instanceof SubMenu) {
+//         $this->hoistSubMenu($thing, $link, $item);
+//         return $this;
+//     }
+//     if (is_string($thing)) {
+//         $link->textContent = $thing;
+//     }
+//     $this->domList[] = $item;
+//     //
+//     return $this;
+// }
 
-    //     //        $reflect = new \ReflectionClass(get_called_class());
-    //     //
-    //     if (!is_null($this->objMenu)) {
-    //         $this->setClasses($thing->subContainer, $this->objMenu->subMenuClasses);
-    //         $node = $this->importNode($thing->subContainer);
-    //         $link->textContent = $thing->header;
+// protected function hoistSubMenu($thing, $link, $item)
+// {
 
-    //         // this is only for dropdown
-    //         //$item->setAttribute("class", "is-dropdown-submenu-parent");
-    //         $item->appendChild($node);
-    //         $this->domList[] = $item;
-    //     }
-    //     //
-    //     return $this;
-    // }
+//     //        $reflect = new \ReflectionClass(get_called_class());
+//     //
+//     if (!is_null($this->objMenu)) {
+//         $this->setClasses($thing->subContainer, $this->objMenu->subMenuClasses);
+//         $node = $this->importNode($thing->subContainer);
+//         $link->textContent = $thing->header;
 
-    // protected function setClasses(\DOMElement $obj, array $classes)
-    // {
-    //     if (!empty($classes)) {
-    //         $classes = implode(" ", $classes);
-    //         $obj->setAttribute("class", $classes);
-    //     }
-    //     return $this;
-    // }
+//         // this is only for dropdown
+//         //$item->setAttribute("class", "is-dropdown-submenu-parent");
+//         $item->appendChild($node);
+//         $this->domList[] = $item;
+//     }
+//     //
+//     return $this;
+// }
 
-    // protected function setData(\DOMElement $obj, array $data)
-    // {
-    //     if (!empty($data)) {
-    //         $data = implode(" ", $data);
-    //         $obj->appendChild($this->dom->createAttribute($data));
-    //     }
-    // }
+// protected function setClasses(\DOMElement $obj, array $classes)
+// {
+//     if (!empty($classes)) {
+//         $classes = implode(" ", $classes);
+//         $obj->setAttribute("class", $classes);
+//     }
+//     return $this;
+// }
 
-    // private function importNode($subItem)
-    // {
-    //     return $this->dom->importNode($subItem, true);
-    // }
+// protected function setData(\DOMElement $obj, array $data)
+// {
+//     if (!empty($data)) {
+//         $data = implode(" ", $data);
+//         $obj->appendChild($this->dom->createAttribute($data));
+//     }
+// }
 
-    // private function assemble()
-    // {
-    //     foreach ($this->domList as $item) {
-    //         $this->menu->appendChild($item);
-    //     }
-    // }
+// private function importNode($subItem)
+// {
+//     return $this->dom->importNode($subItem, true);
+// }
 
-    // public function saveHTML()
-    // {
-    //     $this->classes[] = "menu";
-    //     $this->setClasses($this->menu, $this->objMenu->classes);
-    //     $this->setData($this->menu, $this->objMenu->menuData);
-    //     $this->assemble();
-    //     //
-    //     return $this->dom->saveHTML();
-    // }
+// private function assemble()
+// {
+//     foreach ($this->domList as $item) {
+//         $this->menu->appendChild($item);
+//     }
+// }
+
+// public function saveHTML()
+// {
+//     $this->classes[] = "menu";
+//     $this->setClasses($this->menu, $this->objMenu->classes);
+//     $this->setData($this->menu, $this->objMenu->menuData);
+//     $this->assemble();
+//     //
+//     return $this->dom->saveHTML();
+// }
 }

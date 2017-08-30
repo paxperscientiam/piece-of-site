@@ -17,9 +17,11 @@ use Monolog\ErrorHandler;
 
 
 $menu = Menu::dropdown()
+    ->addItem("SHIT")
+    ->addItem("BALLS")
    ;
-d($menu);
-
+echo $menu->saveHTML();
+// d($result->base->addItem("SDF"));
     // $m = Menu::dropdown()
 
 //     ->addItem("Polaris")

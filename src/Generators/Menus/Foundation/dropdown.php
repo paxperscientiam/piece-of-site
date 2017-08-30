@@ -9,15 +9,12 @@ class Dropdown extends Base
     // autowiring
     public $base;
     //
-    public $classes = [];
-    public $subClasses = [];
+    protected $classes = [];
+    public $subMenuClasses = [];
     public $menuData = [];
 
-    public function __construct(Base $base)
+    public function __construct()
     {
-        // for autowire
-        $this->base = $base;
-        //
         $this->classes[] = "menu dropdown";
         $this->subMenuClasses[] = "menu";
         $this->menuData[] = "data-dropdown-menu";

@@ -7,7 +7,7 @@ use Ramoose\PieceOfSite\Generators\Menus\Document;
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\{Dropdown, Simple, Drilldown, Accordion, Responsive};
 // @codingStandardsIgnoreEnd
 
-class Menu extends Base
+class Menu
 {
     protected static function basic(): Base
     {
@@ -19,7 +19,7 @@ class Menu extends Base
     //     return new Simple();
     // }
 
-    public static function dropDown()
+    public static function dropDown(): Base
     {
         $container = new \League\Container\Container;
         // autowiring
@@ -27,8 +27,10 @@ class Menu extends Base
             new \League\Container\ReflectionContainer
         );
 
-        $result = $container->get('Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown');
-        return $result;
+        $result = $container->get('Ramoose\PieceOfSite\Generators\Menus\Base');
+        d($result);
+        die();
+        //return $result->base;
     }
 
     // public static function drillDown(): Base
