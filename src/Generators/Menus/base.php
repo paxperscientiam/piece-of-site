@@ -2,7 +2,7 @@
 
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
 
-class Base extends Document
+class Base
 {
     // protected $dom;
     // protected $frag;
@@ -19,20 +19,20 @@ class Base extends Document
     // public $objMenu;
 
     // autowiring
-    public $menu;
+    public $objMenu;
     public $doc;
     //
     //
-    public function __construct(Document $doc, Dropdown $menu)
+    public function __construct(Document $doc, $objMenu)
     {
         $this->doc = $doc;
-        $this->menu = $menu;
-        //
+        $this->objMenu = $objMenu;
+        // //
 
-        $this->ele = $this->doc->createChunk("ul");
-        //
-        $this->doc->setClasses($this->menu->classes, $this->ele);
-        $this->doc->setData($this->menu->menuData, $this->ele);
+        // $this->ele = $this->doc->createChunk("ul");
+        // //
+        // $this->doc->setClasses($this->menu->classes, $this->ele);
+        // $this->doc->setData($this->menu->menuData, $this->ele);
     }
 
     public function addItem($text)

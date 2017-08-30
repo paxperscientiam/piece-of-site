@@ -6,9 +6,6 @@ use Ramoose\PieceOfSite\Generators\Menus\BaseInterface;
 
 class Dropdown extends Base
 {
-    // autowiring
-    public $base;
-    //
     protected $classes = [];
     public $subMenuClasses = [];
     public $menuData = [];

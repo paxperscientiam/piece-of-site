@@ -5,7 +5,6 @@ use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
 use Ramoose\PieceOfSite\Generators\Menus\Base;
 use Ramoose\PieceOfSite\Generators\Menus\Document;
 
-
 use Monolog\Logger;
 use Monolog\ErrorHandler;
 
@@ -17,12 +16,11 @@ use Monolog\ErrorHandler;
 
 
 $menu = Menu::dropdown()
-    ->addItem("SHIT")
-    ->addItem("BALLS")
+    //->addItem("SHIT")
+    // ->addItem("BALLS")
     ;
-
-
-echo $menu->saveHTML();
+d($menu);
+//echo $menu->saveHTML();
 // d($result->base->addItem("SDF"));
 // $m = Menu::dropdown()
 

@@ -34,8 +34,11 @@ class Menu
             new \League\Container\ReflectionContainer
         );
 
-        $result = $container->get('Ramoose\PieceOfSite\Generators\Menus\Base');
-        return $result;
+        $container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
+            ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Document')
+            ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown');
+
+        return $container->get('Base');
     }
 
     public static function drillDown()
