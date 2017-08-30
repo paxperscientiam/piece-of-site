@@ -20,6 +20,7 @@ class Document
         $element = $this->dom->createElement($tag);
         $this->frag->appendChild($element);
         $this->dom->appendChild($this->frag);
+        return $element;
     }
 
     public function createElement(string $tag)
@@ -35,14 +36,14 @@ class Document
         return $elements;
     }
 
-    public function appendChildX($child, $parent = null)
+    public function appendChild($child, $parent = null)
     {
         if (is_null($parent)) {
             $parent = $this->frag;
         }
         if ($child instanceof \DOMElement) {
             $parent->appendChild($child);
-            $this->dom->appendChild($this->frag);
+            $this->dom->appendChild($parent);
         }
         if (is_array($child)) {
             $this->appendChildren($child, $parent);

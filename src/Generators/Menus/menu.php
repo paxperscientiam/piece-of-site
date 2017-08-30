@@ -14,12 +14,19 @@ class Menu
         return new Base();
     }
 
-    // public static function simple()
-    // {
-    //     return new Simple();
-    // }
+    public static function simple()
+    {
+        $container = new \League\Container\Container;
+        // autowiring
+        $container->delegate(
+            new \League\Container\ReflectionContainer
+        );
 
-    public static function dropDown(): Base
+        $result = $container->get('Ramoose\PieceOfSite\Generators\Menus\Simple');
+        return $result;
+    }
+
+    public static function dropDown()
     {
         $container = new \League\Container\Container;
         // autowiring
@@ -28,20 +35,25 @@ class Menu
         );
 
         $result = $container->get('Ramoose\PieceOfSite\Generators\Menus\Base');
-        d($result);
-        die();
-        //return $result->base;
+        return $result;
     }
 
-    // public static function drillDown(): Base
-    // {
-    //     return new Base(new DrillDown());
-    // }
+    public static function drillDown()
+    {
+        $container = new \League\Container\Container;
+        // autowiring
+        $container->delegate(
+            new \League\Container\ReflectionContainer
+        );
 
-    // public static function accordion(): Base
-    // {
-    //     return new Base(new AccordionMenu());
-    // }
+        $result = $container->get('Ramoose\PieceOfSite\Generators\Menus\Drilldown');
+        return $result;
+    }
+
+    public static function accordion(): Base
+    {
+        return new Base(new AccordionMenu());
+    }
 
     // public static function responsive(string $heading = ""): Responsive
     // {
