@@ -15,9 +15,12 @@ use Monolog\ErrorHandler;
 ///////////////
 
 
+d(Menu::submenu("SHART"));
+
 $menu = Menu::dropdown()
     ->addItem("SHIT")
     ->addItem("BALLS")
+    ->addItem(Menu::submenu("farts"))
     ;
 echo $menu->saveHTML();
 //echo $menu->saveHTML();

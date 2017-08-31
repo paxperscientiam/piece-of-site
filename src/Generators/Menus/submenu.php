@@ -4,53 +4,17 @@ use Ramoose\PieceOfSite\Generators\Menus\Menu;
 
 class SubMenu extends Base
 {
-    protected $subDom;
-    protected $subContainer;
-    protected $subFrag;
-    //
+    protected $subDoc;
     protected $header;
 
-    public function __construct(string $header = null)
+    public function __construct(Document $subDoc, string $header = null)
     {
         $this->header = $header;
-        //
-        $this->subDom = new \DOMDocument();
-        $this->subDom->encoding = 'UTF-8';
-        $this->subDom->formatOutput = true;
-        $this->subDom->normalizeDocument();
-        //
-        $this->subFrag = $this->subDom->createDocumentFragment();
-        $this->subContainer = $this->subDom->createElement("ul");
-        $this->subFrag->appendChild($this->subContainer);
-        $this->subDom->appendChild($this->subFrag);
-    }
+        $this->subDoc = $subDoc;
 
-    public function addItem($thing)
-    {
-        $item = $this->subDom->createElement("li");
-        $link = $this->subDom->createElement("a");
-        if (is_string($thing)) {
-            $link->textContent = $thing;
-        }
-        if ($thing instanceof SubMenu) {
-            $this->hoistSubMenu($thing, $item, $link);
-        }
 
-        $item->appendChild($link);
 
-        $this->subContainer->appendChild($item);
-        //
-        return $this;
-    }
 
-    protected function anchorThisTo($link, $dom)
-    {
-        if (!is_null($this->header)) {
-            $anchorLink = $dom->createElement("a");
-            $anchorLink->textContent = $this->header;
-        }
-        $link->textContent = $this->header;
-        //
-        return $this;
+        d($this->subDoc->saveHTML());
     }
 }
