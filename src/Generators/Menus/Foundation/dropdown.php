@@ -1,14 +1,12 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus\Foundation;
 
-use Ramoose\PieceOfSite\Generators\Menus\MenuInterface;
 use Ramoose\PieceOfSite\Generators\Menus\Base;
-use Ramoose\PieceOfSite\Generators\Menus\BaseInterface;
 
 class Dropdown extends Base
 {
     protected $classes = [];
-    public $subMenuClasses = [];
-    public $menuData = [];
+    protected $subMenuClasses = [];
+    protected $menuData = [];
 
     public function __construct()
     {

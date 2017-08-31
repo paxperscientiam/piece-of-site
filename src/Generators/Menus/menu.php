@@ -9,6 +9,17 @@ use Ramoose\PieceOfSite\Generators\Menus\Foundation\{Dropdown, Simple, Drilldown
 
 class Menu
 {
+    public $container;
+
+    public function __construct()
+    {
+        $this->container = new \League\Container\Container;
+        // autowiring
+        $this->container->delegate(
+            new \League\Container\ReflectionContainer
+        );
+    }
+
     protected static function basic(): Base
     {
         return new Base();
@@ -16,24 +27,12 @@ class Menu
 
     public static function simple()
     {
-        $container = new \League\Container\Container;
-        // autowiring
-        $container->delegate(
-            new \League\Container\ReflectionContainer
-        );
 
-        $result = $container->get('Ramoose\PieceOfSite\Generators\Menus\Simple');
-        return $result;
     }
 
     public static function dropDown()
     {
-        $container = new \League\Container\Container;
-        // autowiring
-        $container->delegate(
-            new \League\Container\ReflectionContainer
-        );
-
+        $container = (new Menu)->container;
         $container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
             ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Document')
             ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown');
@@ -43,14 +42,7 @@ class Menu
 
     public static function drillDown()
     {
-        $container = new \League\Container\Container;
-        // autowiring
-        $container->delegate(
-            new \League\Container\ReflectionContainer
-        );
 
-        $result = $container->get('Ramoose\PieceOfSite\Generators\Menus\Drilldown');
-        return $result;
     }
 
     public static function accordion(): Base

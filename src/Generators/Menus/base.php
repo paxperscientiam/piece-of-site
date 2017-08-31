@@ -19,27 +19,30 @@ class Base
     // public $objMenu;
 
     // autowiring
-    public $objMenu;
+    public $menu;
     public $doc;
     //
     //
     public function __construct(Document $doc, $objMenu)
     {
         $this->doc = $doc;
-        $this->objMenu = $objMenu;
+        $this->menu = $objMenu;
         // //
 
-        // $this->ele = $this->doc->createChunk("ul");
-        // //
-        // $this->doc->setClasses($this->menu->classes, $this->ele);
-        // $this->doc->setData($this->menu->menuData, $this->ele);
+        $this->ele = $this->doc->createChunk("ul");
+        //
+        $this->doc->setClasses($this->menu->classes, $this->ele);
+        $this->doc->setData($this->menu->menuData, $this->ele);
     }
 
     public function addItem($text)
     {
         $lii = $this->doc->createElement("li");
-        $lii->textContent = $text;
+        $laa = $this->doc->createElement("a");
+
+        $laa->textContent = $text;
         //
+        $this->doc->appendChild($laa, $lii);
         $this->doc->appendChild($lii, $this->ele);
 
         return $this;
