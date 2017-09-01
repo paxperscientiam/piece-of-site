@@ -7,16 +7,14 @@ use Ramoose\PieceOfSite\Generators\Menus\Document;
 class SubMenu extends Base
 {
     protected $header;
-    public $doc;
-    public $frag;
-    public $subMenu;
 
-    public function __construct(Document $doc, string $header = null)
+    public function __construct(string $header = null)
     {
-        $this->doc = $doc;
+        // $this->doc = $doc;
         $this->header = $header;
-        $this->frag = $this->doc->frag;
+        // $this->frag = $this->doc->frag;
 
-        $this->subMenu = $this->doc->createChunk("ul");
+        // $this->subMenu = $this->doc->createChunk("ul");
+        // $this->doc->setData(["derp"], $this->subMenu);
     }
 }

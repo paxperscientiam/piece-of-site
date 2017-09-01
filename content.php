@@ -19,7 +19,10 @@ $menu = Menu::dropdown()
     ->addItem("No")
     ->addItem("Cursing")
     ->addItem("Please")
-    ->addItem(Menu::submenu("Nope"))
+    ->addItem(Menu::submenu("Nope")
+              ->addItem("DEREE")
+              // ->addItem("BB8")
+    )
     ;
 echo $menu->saveHTML();
 //echo $menu->saveHTML();

@@ -59,12 +59,15 @@ class Menu
     public static function subMenu(string $heading = "")
     {
         $container = (new Menu)->container;
+
         $container->add('Submenu', 'Ramoose\PieceOfSite\Generators\Menus\Submenu')
+            ->withArgument($heading);
+        $container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
             ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Document')
-            ->withArgument($heading)
+            ->withArgument('Submenu')
             ;
 
-        return $container->get('Submenu');
+        return $container->get('Base');
     }
 
     public static function __callStatic($name, $arguments)

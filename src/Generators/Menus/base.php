@@ -41,17 +41,19 @@ class Base
 
     public function addItem($thing)
     {
-
         $lii = $this->doc->createElement("li");
         $laa = $this->doc->createElement("a");
-
+        //        d(get_called_class());
         //
         $this->doc->appendChild($laa, $lii);
-        $this->doc->appendChild($lii, $this->ele);
 
-        if ($thing instanceof Submenu) {
-            $node = $this->doc->importNode($thing->subMenu);
+        if (is_object($thing) && $thing->menu instanceof Submenu) {
+            $node = $this->doc->importNode($thing->doc->frag);
             $this->doc->appendChild($node, $lii);
+            //
+            if (!is_null($thing->menu->header)) {
+                $laa->textContent = $thing->menu->header;
+            }
         }
         if (is_string($thing)) {
             $laa->textContent = $thing;
