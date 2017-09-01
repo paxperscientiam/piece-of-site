@@ -1,20 +1,17 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
+use Ramoose\PieceOfSite\Generators\Menus\Document;
+
 
 class SubMenu extends Base
 {
-    protected $subDoc;
     protected $header;
+    public $doc;
 
-    public function __construct(Document $subDoc, string $header = null)
+    public function __construct(Document $doc, string $header = null)
     {
+        $this->doc = $doc;
         $this->header = $header;
-        $this->subDoc = $subDoc;
-
-
-
-
-        d($this->subDoc->saveHTML());
     }
 }

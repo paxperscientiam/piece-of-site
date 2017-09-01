@@ -2,9 +2,6 @@
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
 
-use Ramoose\PieceOfSite\Generators\Menus\Base;
-use Ramoose\PieceOfSite\Generators\Menus\Document;
-
 use Monolog\Logger;
 use Monolog\ErrorHandler;
 
@@ -15,12 +12,14 @@ use Monolog\ErrorHandler;
 ///////////////
 
 
-d(Menu::submenu("SHART"));
+
+
 
 $menu = Menu::dropdown()
-    ->addItem("SHIT")
-    ->addItem("BALLS")
-    ->addItem(Menu::submenu("farts"))
+    ->addItem("No")
+    ->addItem("Cursing")
+    ->addItem("Please")
+    ->addItem(Menu::submenu("Nope"))
     ;
 echo $menu->saveHTML();
 //echo $menu->saveHTML();

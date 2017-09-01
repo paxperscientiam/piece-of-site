@@ -2,8 +2,8 @@
 
 class Document
 {
-    protected $dom;
-    protected $frag;
+    public $dom;
+    public $frag;
 
     public function __construct()
     {
@@ -50,6 +50,7 @@ class Document
         }
     }
 
+
     private function appendChildren(array $children, \DOMElement $parent)
     {
         foreach ($children as $child) {
@@ -61,7 +62,7 @@ class Document
 
     public function setClasses(array $classes, \DOMElement $element)
     {
-        if (!empty($classes)) {
+        if (!($classes)) {
             $classes = implode(" ", $classes);
             $element->setAttribute("class", $classes);
         }
@@ -74,6 +75,8 @@ class Document
             $element->appendChild($this->dom->createAttribute($data));
         }
     }
+
+
 
     public function saveHTML()
     {

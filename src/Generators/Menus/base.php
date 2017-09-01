@@ -1,6 +1,7 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
+use Ramoose\PieceOfSite\Generators\Menus\Submenu;
 
 class Base
 {
@@ -25,25 +26,35 @@ class Base
     //
     public function __construct(Document $doc, $objMenu)
     {
+
         $this->doc = $doc;
         $this->menu = $objMenu;
-        // //
-
+        //
         $this->ele = $this->doc->createChunk("ul");
         //
-        $this->doc->setClasses($this->menu->classes, $this->ele);
-        $this->doc->setData($this->menu->menuData, $this->ele);
+        if (isset($this->menu->classes)) {
+            $this->doc->setClasses($this->menu->classes, $this->ele);
+        }
+        if (isset($this->menu->menuData)) {
+            $this->doc->setData($this->menu->menuData, $this->ele);
+        }
     }
 
     public function addItem($text)
     {
+
         $lii = $this->doc->createElement("li");
         $laa = $this->doc->createElement("a");
 
-        $laa->textContent = $text;
+        //$laa->textContent = $text;
         //
         $this->doc->appendChild($laa, $lii);
         $this->doc->appendChild($lii, $this->ele);
+
+        if ($text instanceof Submenu) {
+            d($text);
+            $this->doc->appendChild($text->doc->dom, $lii);
+        }
 
         return $this;
     }
@@ -131,7 +142,7 @@ class Base
 
     // private function importNode($subItem)
     // {
-    //     return $this->dom->importNode($subItem, true);
+    //     return $this->doc->importNode($subItem, true);
     // }
 
     // private function assemble()
