@@ -6,7 +6,8 @@ use Ramoose\PieceOfSite\Generators\Menus\Document;
 
 class SubMenu extends Base
 {
-    protected $header;
+    public $header;
+    public $shit;
 
     public function __construct(string $header = null)
     {

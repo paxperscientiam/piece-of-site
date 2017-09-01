@@ -38,16 +38,12 @@ class Document
 
     public function appendChild($child, $parent = null)
     {
-        if ($child instanceof \DOMDocument) {
-            if ($child === $this->dom) {
-
-            }
-        }
-
         if (is_null($parent)) {
             $parent = $this->frag;
         }
-        if ($child instanceof \DOMElement) {
+        if ($child instanceof \DOMElement || $child instanceof \DOMDocumentFragment) {
+            $ull = $this->dom->createElement("div");
+            $child->appendChild($ull);
             $parent->appendChild($child);
             $this->dom->appendChild($parent);
         }
@@ -64,6 +60,11 @@ class Document
                 $parent->appendChild($child);
             }
         }
+    }
+
+    public function setLink(string $href, \DOMElement $link)
+    {
+        $link->setAttribute("href", $href);
     }
 
     public function setClasses(array $classes, \DOMElement $element)

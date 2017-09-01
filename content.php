@@ -16,15 +16,15 @@ use Monolog\ErrorHandler;
 
 
 $menu = Menu::dropdown()
-    ->addItem("No")
+    ->addItem("No", "/link")
     ->addItem("Cursing")
     ->addItem("Please")
-    ->addItem(Menu::submenu("Nope")
-              ->addItem("DEREE")
-              // ->addItem("BB8")
-    )
+    // ->addItem(Menu::submenu("Nope")
+    //           ->addItem("DEREE")
+    //           ->addItem("BB8")
+    // )
     ;
-echo $menu->saveHTML();
+d($menu->saveHTML());
 //echo $menu->saveHTML();
 // d($result->base->addItem("SDF"));
 // $m = Menu::dropdown()

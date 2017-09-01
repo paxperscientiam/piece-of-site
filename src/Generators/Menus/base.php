@@ -22,6 +22,8 @@ class Base
     // autowiring
     public $menu;
     public $doc;
+    public $subMenu;
+    public $node;
     //
     //
     public function __construct(Document $doc, $objMenu)
@@ -39,24 +41,33 @@ class Base
         }
     }
 
-    public function addItem($thing)
+    public function addItem($thing, $blob = "#")
     {
         $lii = $this->doc->createElement("li");
         $laa = $this->doc->createElement("a");
-        //        d(get_called_class());
         //
         $this->doc->appendChild($laa, $lii);
 
+        if ($this->menu instanceof Submenu) {
+            // d($this->menu->saveHTML());
+            d($this->menu);
+            d(get_class($this));
+        }
+
+
         if (is_object($thing) && $thing->menu instanceof Submenu) {
-            $node = $this->doc->importNode($thing->doc->frag);
-            $this->doc->appendChild($node, $lii);
+            $this->subMenu = $thing->menu;
+            $this->node = $this->doc->importNode($thing->doc->frag);
+            $this->doc->appendChild($this->node, $lii);
             //
             if (!is_null($thing->menu->header)) {
                 $laa->textContent = $thing->menu->header;
             }
         }
+
         if (is_string($thing)) {
             $laa->textContent = $thing;
+            $this->doc->setLink($blob, $laa);
         }
 
         return $this;
