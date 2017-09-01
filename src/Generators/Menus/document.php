@@ -38,6 +38,12 @@ class Document
 
     public function appendChild($child, $parent = null)
     {
+        if ($child instanceof \DOMDocument) {
+            if ($child === $this->dom) {
+
+            }
+        }
+
         if (is_null($parent)) {
             $parent = $this->frag;
         }
@@ -68,15 +74,19 @@ class Document
         }
     }
 
+    public function importNode($node)
+    {
+        return $this->dom->importNode($node, true);
+    }
+
     public function setData(array $data, \DOMElement $element)
     {
+        // may need to account for extant data (same for classes)
         if (!empty($data)) {
             $data = implode(" ", $data);
             $element->appendChild($this->dom->createAttribute($data));
         }
     }
-
-
 
     public function saveHTML()
     {

@@ -26,7 +26,6 @@ class Base
     //
     public function __construct(Document $doc, $objMenu)
     {
-
         $this->doc = $doc;
         $this->menu = $objMenu;
         //
@@ -40,20 +39,22 @@ class Base
         }
     }
 
-    public function addItem($text)
+    public function addItem($thing)
     {
 
         $lii = $this->doc->createElement("li");
         $laa = $this->doc->createElement("a");
 
-        //$laa->textContent = $text;
         //
         $this->doc->appendChild($laa, $lii);
         $this->doc->appendChild($lii, $this->ele);
 
-        if ($text instanceof Submenu) {
-            d($text);
-            $this->doc->appendChild($text->doc->dom, $lii);
+        if ($thing instanceof Submenu) {
+            $node = $this->doc->importNode($thing->subMenu);
+            $this->doc->appendChild($node, $lii);
+        }
+        if (is_string($thing)) {
+            $laa->textContent = $thing;
         }
 
         return $this;
