@@ -41,11 +41,15 @@ class Document
         if (is_null($parent)) {
             $parent = $this->frag;
         }
-        if ($child instanceof \DOMElement || $child instanceof \DOMDocumentFragment) {
-            $ull = $this->dom->createElement("div");
-            $child->appendChild($ull);
+        if ($child instanceof \DOMElement) {
             $parent->appendChild($child);
-            $this->dom->appendChild($parent);
+        }
+        if ($child instanceof \DOMDocumentFragment) {
+            //            d($this->dom->saveHTML());
+            // $ull = $this->dom->createElement("ul");
+            // $laa = $this->dom->createElement("a");
+            // $child->appendChild($ull);
+            // $parent->appendChild($child);
         }
         if (is_array($child)) {
             $this->appendChildren($child, $parent);

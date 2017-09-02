@@ -22,7 +22,6 @@ class Base
     // autowiring
     public $menu;
     public $doc;
-    public $subMenu;
     public $node;
     //
     //
@@ -41,25 +40,27 @@ class Base
         }
     }
 
-    public function addItem($thing, $blob = "#")
+    public function addItem($thing, string $blob = "#")
     {
         $lii = $this->doc->createElement("li");
         $laa = $this->doc->createElement("a");
+        $ull = $this->doc->createElement("ul");
         //
         $this->doc->appendChild($laa, $lii);
 
+        $this->doc->appendChild($lii, $this->ele);
+
+
         if ($this->menu instanceof Submenu) {
-            // d($this->menu->saveHTML());
-            d($this->menu);
-            d(get_class($this));
+            //            d($this);
         }
 
 
         if (is_object($thing) && $thing->menu instanceof Submenu) {
-            $this->subMenu = $thing->menu;
             $this->node = $this->doc->importNode($thing->doc->frag);
-            $this->doc->appendChild($this->node, $lii);
-            //
+            $this->node->appendChild($ull);
+            $this->doc->appendChild($ull, $lii);
+
             if (!is_null($thing->menu->header)) {
                 $laa->textContent = $thing->menu->header;
             }

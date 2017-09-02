@@ -62,6 +62,7 @@ class Menu
 
         $container->add('Submenu', 'Ramoose\PieceOfSite\Generators\Menus\Submenu')
             ->withArgument($heading);
+        //
         $container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
             ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Document')
             ->withArgument('Submenu')
