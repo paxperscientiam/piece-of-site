@@ -27,14 +27,11 @@ class Base extends Menu
         if (isset($this->menu->menuData)) {
             $this->doc->setData($this->menu->menuData, self::$ele);
         }
-        //
-
-
-        self::$container->add("state", $this);
     }
 
     public function addItem($thing, string $blob = "#")
     {
+        d($thing);
         self::$dom->ull  = $this->doc->createElement("ul");
         //
         $this->lii = $this->doc->createElement("li");
@@ -47,8 +44,8 @@ class Base extends Menu
             $this->laa->textContent = $thing;
         }
 
-        if ($thing instanceof Submenu) {
-            $this->laa->textContent = $thing->header;
+        if ($thing instanceof Base) {
+            $this->laa->textContent = $thing->menu->header;
             $this->doc->appendChild($this->laa, $this->lii);
             $this->doc->appendChild(self::$dom->ull, $this->lii);
         }
