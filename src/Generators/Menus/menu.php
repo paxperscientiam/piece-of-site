@@ -19,24 +19,24 @@ class Menu
         self::$dom = new Document;
     }
 
-    public static function subMenu($heading)
-    {
-        return new Submenu(self::$container, $heading);
-    }
-
     public static function __callStatic($name, $arguments)
     {
-        new Menu();
-        //
+        d($name);
         $thisClass = get_called_class();
         $msg = "Uknown static method: $thisClass::$name( ) ";
         $menuClass = "Ramoose\PieceOfSite\Generators\Menus\Foundation\\$name";
 
         try {
             if (class_exists($menuClass)) {
+                if (strcasecmp($name, "submenu") !== 0) {
+                    new Menu();
+                }
+
                 self::$container->add('Menu', $menuClass);
+                self::$container->add('Document', self::$dom);
+                //
                 self::$container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
-                    ->withArgument(self::$dom)
+                    ->withArgument('Document')
                     ->withArgument('Menu')
                     ;
 

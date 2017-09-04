@@ -4,6 +4,7 @@ class Document
 {
     public $dom;
     public $frag;
+    public $hook;
 
     public function __construct()
     {
@@ -17,10 +18,10 @@ class Document
 
     public function createChunk(string $tag)
     {
-        $element = $this->dom->createElement($tag);
-        $this->frag->appendChild($element);
+        $this->hook = $this->dom->createElement($tag);
+        $this->frag->appendChild($this->hook);
         $this->dom->appendChild($this->frag);
-        return $element;
+        return $this->hook;
     }
 
     public function createElement(string $tag)
@@ -41,9 +42,11 @@ class Document
         if (is_null($parent)) {
             $parent = $this->frag;
         }
+
         if ($child instanceof \DOMElement) {
             $parent->appendChild($child);
         }
+
         if ($child instanceof \DOMDocumentFragment) {
             //            d($this->dom->saveHTML());
             // $ull = $this->dom->createElement("ul");

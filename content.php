@@ -14,10 +14,7 @@ use Monolog\ErrorHandler;
 $menu = Menu::dropdown()
     ->addItem("string", "/lol")
     ->addItem("shit")
-    ->addItem(Menu::subMenu("farts")
-              ->addItem("balls")
-              ->addItem("ssss")
-    )
+    ->addItem(Menu::subMenu("farts"))
     ;
 
 d($menu->saveHTML());
