@@ -6,6 +6,7 @@ use Ramoose\PieceOfSite\Generators\Menus\Document;
 class Menu
 {
     public static $container;
+    public static $dom;
 
     public function __construct()
     {
@@ -14,16 +15,13 @@ class Menu
         self::$container->delegate(
             new \League\Container\ReflectionContainer
         );
-    }
 
-    protected static function basic(): Base
-    {
-        return new Base();
+        self::$dom = new Document;
     }
 
     public static function subMenu($heading)
     {
-        return new Submenu($heading);
+        return new Submenu(self::$container, $heading);
     }
 
     public static function __callStatic($name, $arguments)
@@ -31,16 +29,17 @@ class Menu
         new Menu();
         //
         $thisClass = get_called_class();
-        $msg = "Uknown static method called on $thisClass: '$name' ";
+        $msg = "Uknown static method: $thisClass::$name( ) ";
         $menuClass = "Ramoose\PieceOfSite\Generators\Menus\Foundation\\$name";
 
         try {
             if (class_exists($menuClass)) {
                 self::$container->add('Menu', $menuClass);
                 self::$container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
-                    ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Document')
+                    ->withArgument(self::$dom)
                     ->withArgument('Menu')
                     ;
+
                 return self::$container->get('Base');
             }
             throw new \Exception($msg);

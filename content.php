@@ -15,10 +15,9 @@ $menu = Menu::dropdown()
     ->addItem("string", "/lol")
     ->addItem("shit")
     ->addItem(Menu::subMenu("farts")
-              //           ->addItem("balls")
+              ->addItem("balls")
+              ->addItem("ssss")
     )
     ;
-
-Menu::drilldown();
 
 d($menu->saveHTML());

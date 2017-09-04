@@ -2,11 +2,11 @@
 
 use Ramoose\PieceOfSite\Generators\Menus\Base;
 
-class Dropdown extends Base
+class Dropdown
 {
-    protected $classes = [];
-    protected $subMenuClasses = [];
-    protected $menuData = [];
+    public $classes = [];
+    public $subMenuClasses = [];
+    public $menuData = [];
 
     public function __construct()
     {

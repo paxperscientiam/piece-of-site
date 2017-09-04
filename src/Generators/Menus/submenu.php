@@ -3,27 +3,24 @@
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
 use Ramoose\PieceOfSite\Generators\Menus\Document;
 
-class SubMenu extends Menu
+class SubMenu
 {
     public $header;
+    public $root;
 
-    public function __construct(string $header = null)
+    public static $container;
+
+    public function __construct($container, string $header = null)
     {
+        self::$container = $container;
+
         $this->header = $header;
-
-
-        // $this->dom = self::$container->get("state")->doc;
-        // $this->root = $this->dom->createElement("ul");
-        // $this->lii = self::$container->get("state")->lii;
-
-
+        $this->root = self::$container->get("state")->ull;
     }
 
-    public function addItem($bbb)
+    public function addItem($thing)
     {
-        // $uu = $this->dom->createElement("div");
-        // $this->lii->appendChild($uu);
-
+        self::$container->get("state")->addItem($thing);
         return $this;
     }
 }

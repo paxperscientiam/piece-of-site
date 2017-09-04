@@ -73,10 +73,11 @@ class Document
 
     public function setClasses(array $classes, \DOMElement $element)
     {
-        if (!($classes)) {
+        if (!empty($classes)) {
             $classes = implode(" ", $classes);
             $element->setAttribute("class", $classes);
         }
+        return $element;
     }
 
     public function importNode($node)

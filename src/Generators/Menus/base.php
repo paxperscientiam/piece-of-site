@@ -10,6 +10,7 @@ class Base extends Menu
     public $doc;
     public $lii;
     public $laa;
+    public $ull;
     //
     //
     public function __construct(Document $doc, $objMenu)
@@ -26,11 +27,17 @@ class Base extends Menu
             $this->doc->setData($this->menu->menuData, $this->ele);
         }
         //
+        d("new",self::$dom->saveHTML());
+        die();
         self::$container->add("state", $this);
     }
 
     public function addItem($thing, string $blob = "#")
     {
+        d("static",self::$dom->saveHTML());
+
+        $this->ull = $this->doc->createElement("ul");
+        //
         $this->lii = $this->doc->createElement("li");
         $this->laa = $this->doc->createElement("a");
         //
@@ -43,9 +50,16 @@ class Base extends Menu
 
         if ($thing instanceof Submenu && !is_null($thing->header)) {
             $this->laa->textContent = $thing->header;
+
+            $this->doc->setClasses($this->menu->classes, $this->ele);
+            $this->doc->appendChild($this->ull, $this->lii);
         }
         $this->doc->setLink($blob, $this->laa);
+        $this->doc->setClasses($this->menu->classes, $this->laa);
+
+        d($this->doc->saveHTML());
         //
+        self::$container->add("state", $this);
         return $this;
     }
 
