@@ -3,19 +3,17 @@
 use Ramoose\PieceOfSite\Generators\Menus\Base;
 use Ramoose\PieceOfSite\Generators\Menus\Document;
 
-// @codingStandardsIgnoreStart
-use Ramoose\PieceOfSite\Generators\Menus\Foundation\{Dropdown, Simple, Drilldown, Accordion, Responsive};
-// @codingStandardsIgnoreEnd
-
 class Menu
 {
-    public $container;
+    private static $intance;
+
+    public static $container;
 
     public function __construct()
     {
-        $this->container = new \League\Container\Container;
+        self::$container = new \League\Container\Container;
         // autowiring
-        $this->container->delegate(
+        self::$container->delegate(
             new \League\Container\ReflectionContainer
         );
     }
@@ -25,57 +23,29 @@ class Menu
         return new Base();
     }
 
-    public static function simple()
+    public static function subMenu($heading)
     {
-
-    }
-
-    public static function dropDown()
-    {
-        $container = (new Menu)->container;
-        $container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
-            ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Document')
-            ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown');
-
-        return $container->get('Base');
-    }
-
-    public static function drillDown()
-    {
-
-    }
-
-    public static function accordion(): Base
-    {
-        return new Base(new AccordionMenu());
-    }
-
-    // public static function responsive(string $heading = ""): Responsive
-    // {
-    //     return new Base(new Responsive($heading));
-    // }
-    // //
-    //
-    public static function subMenu(string $heading = "")
-    {
-        $container = (new Menu)->container;
-
-        $container->add('Submenu', 'Ramoose\PieceOfSite\Generators\Menus\Submenu')
-            ->withArgument($heading);
-        //
-        $container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
-            ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Document')
-            ->withArgument('Submenu')
-            ;
-
-        return $container->get('Base');
+        return new Submenu($heading);
     }
 
     public static function __callStatic($name, $arguments)
     {
+        new Menu();
+        //
         $thisClass = get_called_class();
         $msg = "Uknown static method called on $thisClass: '$name' ";
+        $menuClass = "Ramoose\PieceOfSite\Generators\Menus\Foundation\\$name";
+
+
         try {
+            if (class_exists($menuClass)) {
+                self::$container->add('Menu', $menuClass);
+                self::$container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
+                    ->withArgument('Ramoose\PieceOfSite\Generators\Menus\Document')
+                    ->withArgument('Menu')
+                    ;
+                return self::$container->get('Base');
+            }
             throw new \Exception($msg);
         } catch (\Exception $e) {
             echo $e->getMessage();

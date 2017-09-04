@@ -3,7 +3,7 @@
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
 use Ramoose\PieceOfSite\Generators\Menus\Submenu;
 
-class Base
+class Base extends Menu
 {
     // protected $dom;
     // protected $frag;
@@ -23,6 +23,8 @@ class Base
     public $menu;
     public $doc;
     public $node;
+    public $items = [];
+    public $bb;
     //
     //
     public function __construct(Document $doc, $objMenu)
@@ -30,6 +32,7 @@ class Base
         $this->doc = $doc;
         $this->menu = $objMenu;
         //
+        $this->bb = 606;
         $this->ele = $this->doc->createChunk("ul");
         //
         if (isset($this->menu->classes)) {
@@ -38,10 +41,15 @@ class Base
         if (isset($this->menu->menuData)) {
             $this->doc->setData($this->menu->menuData, $this->ele);
         }
+        //
+        self::$container->add("state", $this);
     }
 
     public function addItem($thing, string $blob = "#")
     {
+        d(self::$container->get("state")->doc->saveHTML());
+        $this->items[] = $thing;
+
         $lii = $this->doc->createElement("li");
         $laa = $this->doc->createElement("a");
         $ull = $this->doc->createElement("ul");
@@ -50,26 +58,32 @@ class Base
 
         $this->doc->appendChild($lii, $this->ele);
 
-
-        if ($this->menu instanceof Submenu) {
-            //            d($this);
-        }
-
-
-        if (is_object($thing) && $thing->menu instanceof Submenu) {
-            $this->node = $this->doc->importNode($thing->doc->frag);
-            $this->node->appendChild($ull);
-            $this->doc->appendChild($ull, $lii);
-
-            if (!is_null($thing->menu->header)) {
-                $laa->textContent = $thing->menu->header;
-            }
-        }
-
         if (is_string($thing)) {
             $laa->textContent = $thing;
             $this->doc->setLink($blob, $laa);
         }
+
+        // if (is_object($thing) && $thing->menu instanceof Submenu) {
+        //     $this->node = $this->doc->importNode($thing->doc->frag);
+        //     $this->node->appendChild($ull);
+        //     $this->doc->appendChild($ull, $lii);
+
+        //     if (!is_null($thing->menu->header)) {
+        //         $laa->textContent = $thing->menu->header;
+        //     }
+        //     return $this;
+        // }
+
+        // if (is_string($thing) && $this->menu instanceof Submenu) {
+        //     //  d($this,$this->doc->saveHTML());
+        //     //            d($thing);
+        //     // // d($thing,$this->menu);
+        //     // $laa->textContent = $thing;
+        //     // $this->doc->setLink($blob, $laa);
+        //     // //
+        //     return $this;
+        // }
+
 
         return $this;
     }
@@ -78,6 +92,12 @@ class Base
     {
         return $this->doc->saveHTML();
     }
+
+    public static function subMenu($iii)
+    {
+        d($this);
+    }
+
 
     // public function __construct()
     // {
