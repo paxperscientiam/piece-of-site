@@ -29,14 +29,17 @@ class Menu
             if (class_exists($menuClass)) {
                 if (strcasecmp($name, "submenu") !== 0) {
                     new Menu();
+                    self::$container->add('Document', self::$dom);
                     self::$container->add('Menu', $menuClass);
                 }
                 if (strcasecmp($name, "submenu") === 0) {
                     self::$container->add('Menu', $menuClass)
+                        ->withArgument("Document")
                         ->withArgument(new \League\Container\Argument\RawArgument($arguments[0]));
+                    return self::$container->get('Menu');
                 }
 
-                self::$container->add('Document', self::$dom);
+
                 //
                 self::$container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
                     ->withArgument('Document')

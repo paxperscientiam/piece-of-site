@@ -1,9 +1,8 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus;
 
-use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
-use Ramoose\PieceOfSite\Generators\Menus\Submenu;
+use Ramoose\PieceOfSite\Generators\Menus\Foundation\Submenu;
 
-class Base extends Menu
+class Base
 {
     // autowiring
     public $menu;
@@ -31,9 +30,6 @@ class Base extends Menu
 
     public function addItem($thing, string $blob = "#")
     {
-        d($thing);
-        self::$dom->ull  = $this->doc->createElement("ul");
-        //
         $this->lii = $this->doc->createElement("li");
         $this->laa = $this->doc->createElement("a");
         //
@@ -43,13 +39,16 @@ class Base extends Menu
         if (is_string($thing)) {
             $this->laa->textContent = $thing;
         }
-
-        if ($thing instanceof Base) {
-            $this->laa->textContent = $thing->menu->header;
+        if ($thing instanceof Submenu) {
+            ;
+            $this->laa->textContent = $thing->header;
             $this->doc->appendChild($this->laa, $this->lii);
-            $this->doc->appendChild(self::$dom->ull, $this->lii);
+            $this->doc->setClasses($this->menu->subMenuClasses, $thing->subUll);
+                $this->doc->appendChild($thing->subUll, $this->lii);
         }
+
         $this->doc->setLink($blob, $this->laa);
+        //
         return $this;
     }
 

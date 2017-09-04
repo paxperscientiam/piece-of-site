@@ -8,8 +8,20 @@ class SubMenu
 {
     public $header;
 
-    public function __construct(string $header = null)
+    public function __construct($dom, string $header = null)
     {
+        $this->subUll = $dom->createElement("ul");
         $this->header = $header;
+        $this->dom = $dom;
+    }
+
+    public function addItem($thing)
+    {
+        $item = $this->dom->createElement("li");
+        $item->textContent = $thing;
+
+        $this->subUll->appendChild($item);
+
+        return $this;
     }
 }
