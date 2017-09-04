@@ -5,8 +5,6 @@ use Ramoose\PieceOfSite\Generators\Menus\Document;
 
 class Menu
 {
-    private static $intance;
-
     public static $container;
 
     public function __construct()
@@ -35,7 +33,6 @@ class Menu
         $thisClass = get_called_class();
         $msg = "Uknown static method called on $thisClass: '$name' ";
         $menuClass = "Ramoose\PieceOfSite\Generators\Menus\Foundation\\$name";
-
 
         try {
             if (class_exists($menuClass)) {

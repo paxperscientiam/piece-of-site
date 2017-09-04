@@ -5,26 +5,11 @@ use Ramoose\PieceOfSite\Generators\Menus\Submenu;
 
 class Base extends Menu
 {
-    // protected $dom;
-    // protected $frag;
-    // protected $subMenu;
-    // //
-    // protected $menu;
-    // protected $classes = [];
-    // protected $subMenuClasses = [];
-    // //
-    // protected $menuData = [];
-    // protected $subMenuData = [];
-    // protected $domList = [];
-    // //
-    // public $objMenu;
-
     // autowiring
     public $menu;
     public $doc;
-    public $node;
-    public $items = [];
-    public $bb;
+    public $lii;
+    public $laa;
     //
     //
     public function __construct(Document $doc, $objMenu)
@@ -32,7 +17,6 @@ class Base extends Menu
         $this->doc = $doc;
         $this->menu = $objMenu;
         //
-        $this->bb = 606;
         $this->ele = $this->doc->createChunk("ul");
         //
         if (isset($this->menu->classes)) {
@@ -47,55 +31,27 @@ class Base extends Menu
 
     public function addItem($thing, string $blob = "#")
     {
-        d(self::$container->get("state")->doc->saveHTML());
-        $this->items[] = $thing;
-
-        $lii = $this->doc->createElement("li");
-        $laa = $this->doc->createElement("a");
-        $ull = $this->doc->createElement("ul");
+        $this->lii = $this->doc->createElement("li");
+        $this->laa = $this->doc->createElement("a");
         //
-        $this->doc->appendChild($laa, $lii);
-
-        $this->doc->appendChild($lii, $this->ele);
+        $this->doc->appendChild($this->laa, $this->lii);
+        $this->doc->appendChild($this->lii, $this->ele);
 
         if (is_string($thing)) {
-            $laa->textContent = $thing;
-            $this->doc->setLink($blob, $laa);
+            $this->laa->textContent = $thing;
         }
 
-        // if (is_object($thing) && $thing->menu instanceof Submenu) {
-        //     $this->node = $this->doc->importNode($thing->doc->frag);
-        //     $this->node->appendChild($ull);
-        //     $this->doc->appendChild($ull, $lii);
-
-        //     if (!is_null($thing->menu->header)) {
-        //         $laa->textContent = $thing->menu->header;
-        //     }
-        //     return $this;
-        // }
-
-        // if (is_string($thing) && $this->menu instanceof Submenu) {
-        //     //  d($this,$this->doc->saveHTML());
-        //     //            d($thing);
-        //     // // d($thing,$this->menu);
-        //     // $laa->textContent = $thing;
-        //     // $this->doc->setLink($blob, $laa);
-        //     // //
-        //     return $this;
-        // }
-
-
+        if ($thing instanceof Submenu && !is_null($thing->header)) {
+            $this->laa->textContent = $thing->header;
+        }
+        $this->doc->setLink($blob, $this->laa);
+        //
         return $this;
     }
 
     public function saveHTML()
     {
         return $this->doc->saveHTML();
-    }
-
-    public static function subMenu($iii)
-    {
-        d($this);
     }
 
 

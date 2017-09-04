@@ -10,10 +10,20 @@ class SubMenu extends Menu
     public function __construct(string $header = null)
     {
         $this->header = $header;
+
+
+        // $this->dom = self::$container->get("state")->doc;
+        // $this->root = $this->dom->createElement("ul");
+        // $this->lii = self::$container->get("state")->lii;
+
+
     }
 
     public function addItem($bbb)
     {
-        d(self::$container->get("state"));
+        // $uu = $this->dom->createElement("div");
+        // $this->lii->appendChild($uu);
+
+        return $this;
     }
 }

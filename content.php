@@ -1,6 +1,5 @@
 <?PHP
 use Ramoose\PieceOfSite\Generators\Menus\Menu;
-use Ramoose\PieceOfSite\Generators\Menus\Foundation\Dropdown;
 
 use Monolog\Logger;
 use Monolog\ErrorHandler;
@@ -13,10 +12,11 @@ use Monolog\ErrorHandler;
 
 
 $menu = Menu::dropdown()
-    ->addItem("string")
+    ->addItem("string", "/lol")
     ->addItem("shit")
     ->addItem(Menu::subMenu("farts")
-              ->addItem("balls"))
+              //           ->addItem("balls")
+    )
     ;
 
 Menu::drilldown();
