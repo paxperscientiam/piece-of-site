@@ -43,7 +43,9 @@ class Base
             $this->doc->appendChild($this->laa, $this->lii);
             $this->doc->setClasses($this->menu->subMenuClasses, $thing->subUll);
 
-            $this->lii->setAttribute("class", $this->menu->firstllClass);
+            if (isset($this->menu->firstllClass)) {
+                $this->doc->setClasses($this->lii, $this->menu->firstllClass);
+            }
 
             $this->doc->appendChild($thing->subUll, $this->lii);
         }
