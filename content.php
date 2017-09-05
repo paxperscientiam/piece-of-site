@@ -20,4 +20,4 @@ $menu = Menu::dropdown()
     )
     ;
 echo $menu->saveHTML();
-d($menu);
+d($menu->saveHTML());

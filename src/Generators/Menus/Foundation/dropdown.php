@@ -13,5 +13,7 @@ class Dropdown
         $this->classes[] = "menu dropdown";
         $this->subMenuClasses[] = "menu";
         $this->menuData[] = "data-dropdown-menu";
+        //
+        $this->firstllClass = "is-dropdown-submenu-parent";
     }
 }
