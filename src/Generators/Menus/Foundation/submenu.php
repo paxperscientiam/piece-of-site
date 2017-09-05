@@ -1,9 +1,5 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus\Foundation;
 
-use Ramoose\PieceOfSite\Generators\Menus\Menu;
-use Ramoose\PieceOfSite\Generators\Menus\Menu\Base;
-use Ramoose\PieceOfSite\Generators\Menus\Document;
-
 class SubMenu
 {
     public $header;
@@ -15,13 +11,15 @@ class SubMenu
         $this->dom = $dom;
     }
 
-    public function addItem($thing)
+    public function addItem($thing, string $blob = "#")
     {
         $item = $this->dom->createElement("li");
-        $item->textContent = $thing;
-
+        $link = $this->dom->createElement("a");
+        $link->textContent = $thing;
+        $link->setAttribute("href", $blob);
+        $item->appendChild($link);
         $this->subUll->appendChild($item);
-
+        //
         return $this;
     }
 }

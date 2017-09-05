@@ -11,7 +11,6 @@ class Menu
     public function __construct()
     {
         self::$container = new \League\Container\Container;
-        // autowiring
         self::$container->delegate(
             new \League\Container\ReflectionContainer
         );
@@ -38,8 +37,6 @@ class Menu
                         ->withArgument(new \League\Container\Argument\RawArgument($arguments[0]));
                     return self::$container->get('Menu');
                 }
-
-
                 //
                 self::$container->add('Base', 'Ramoose\PieceOfSite\Generators\Menus\Base')
                     ->withArgument('Document')

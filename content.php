@@ -15,9 +15,9 @@ $menu = Menu::dropdown()
     ->addItem("string", "/lol")
     ->addItem("shit")
     ->addItem(Menu::subMenu("farts")
-              ->addItem("laksjdflka")
+              ->addItem("laksjdflka", "/farts.php")
               ->addItem("balls")
     )
     ;
 echo $menu->saveHTML();
-d($menu->saveHTML());
+d($menu);

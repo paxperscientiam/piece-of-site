@@ -4,13 +4,12 @@ use Ramoose\PieceOfSite\Generators\Menus\Foundation\Submenu;
 
 class Base
 {
-    // autowiring
     public $menu;
     public $doc;
     public $lii;
     public $laa;
     public $ull;
-    public static $ele;
+    public $ele;
     //
     //
     public function __construct(Document $doc, $objMenu)
@@ -18,13 +17,13 @@ class Base
         $this->doc = $doc;
         $this->menu = $objMenu;
         //
-        self::$ele = $this->doc->createChunk("ul");
+        $this->ele = $this->doc->createChunk("ul");
         //
         if (isset($this->menu->classes)) {
-            $this->doc->setClasses($this->menu->classes, self::$ele);
+            $this->doc->setClasses($this->menu->classes, $this->ele);
         }
         if (isset($this->menu->menuData)) {
-            $this->doc->setData($this->menu->menuData, self::$ele);
+            $this->doc->setData($this->menu->menuData, $this->ele);
         }
     }
 
@@ -34,17 +33,16 @@ class Base
         $this->laa = $this->doc->createElement("a");
         //
         $this->doc->appendChild($this->laa, $this->lii);
-        $this->doc->appendChild($this->lii, self::$ele);
+        $this->doc->appendChild($this->lii, $this->ele);
 
         if (is_string($thing)) {
             $this->laa->textContent = $thing;
         }
         if ($thing instanceof Submenu) {
-            ;
             $this->laa->textContent = $thing->header;
             $this->doc->appendChild($this->laa, $this->lii);
             $this->doc->setClasses($this->menu->subMenuClasses, $thing->subUll);
-                $this->doc->appendChild($thing->subUll, $this->lii);
+            $this->doc->appendChild($thing->subUll, $this->lii);
         }
 
         $this->doc->setLink($blob, $this->laa);
@@ -56,103 +54,4 @@ class Base
     {
         return $this->doc->saveHTML();
     }
-
-
-    // public function __construct()
-    // {
-    //     die("no");
-    //     $this->objMenu = $objMenu;
-    //     //
-    //     $this->dom = new \DOMDocument();
-    //     $this->dom->encoding = 'UTF-8';
-    //     $this->dom->formatOutput = true;
-    //     $this->dom->normalizeDocument();
-    //     //
-    //     $this->frag = $this->dom->createDocumentFragment();
-    //     $this->menu = $this->dom->createElement("ul");
-    //     //
-    //     $this->frag->appendChild($this->menu);
-    //     $this->dom->appendChild($this->frag);
-    // }
-    // /**
-    //  * @param string|SubMenu, string
-    //  */
-    // public function addItem($thing, string $href = "#")
-    // {
-    //     $link = $this->dom->createElement("a");
-    //     $link->setAttribute("href", $href);
-    //     //
-    //     $item = $this->dom->createElement("li");
-    //     //
-    //     $item->appendChild($link);
-    //     //
-    //     if ($thing instanceof SubMenu) {
-    //         $this->hoistSubMenu($thing, $link, $item);
-    //         return $this;
-    //     }
-    //     if (is_string($thing)) {
-    //         $link->textContent = $thing;
-    //     }
-    //     $this->domList[] = $item;
-    //     //
-    //     return $this;
-    // }
-
-    // protected function hoistSubMenu($thing, $link, $item)
-    // {
-
-    //     //        $reflect = new \ReflectionClass(get_called_class());
-    //     //
-    //     if (!is_null($this->objMenu)) {
-    //         $this->setClasses($thing->subContainer, $this->objMenu->subMenuClasses);
-    //         $node = $this->importNode($thing->subContainer);
-    //         $link->textContent = $thing->header;
-
-    //         // this is only for dropdown
-    //         //$item->setAttribute("class", "is-dropdown-submenu-parent");
-    //         $item->appendChild($node);
-    //         $this->domList[] = $item;
-    //     }
-    //     //
-    //     return $this;
-    // }
-
-    // protected function setClasses(\DOMElement $obj, array $classes)
-    // {
-    //     if (!empty($classes)) {
-    //         $classes = implode(" ", $classes);
-    //         $obj->setAttribute("class", $classes);
-    //     }
-    //     return $this;
-    // }
-
-    // protected function setData(\DOMElement $obj, array $data)
-    // {
-    //     if (!empty($data)) {
-    //         $data = implode(" ", $data);
-    //         $obj->appendChild($this->dom->createAttribute($data));
-    //     }
-    // }
-
-    // private function importNode($subItem)
-    // {
-    //     return $this->doc->importNode($subItem, true);
-    // }
-
-    // private function assemble()
-    // {
-    //     foreach ($this->domList as $item) {
-    //         $this->menu->appendChild($item);
-    //     }
-    // }
-
-    // public function saveHTML()
-    // {
-    //     $this->classes[] = "menu";
-    //     $this->setClasses($this->menu, $this->objMenu->classes);
-    //     $this->setData($this->menu, $this->objMenu->menuData);
-    //     $this->assemble();
-    //     //
-    //     return $this->dom->saveHTML();
-    // }
 }
