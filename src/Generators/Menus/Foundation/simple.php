@@ -1,8 +1,6 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus\Foundation;
 
-use Ramoose\PieceOfSite\Generators\Menus\Base;
-
-class Simple
+class Simple extends XForm
 {
     public $classes = [];
     public $subMenuClasses = [];

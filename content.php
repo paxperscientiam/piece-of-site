@@ -12,12 +12,9 @@ use Monolog\ErrorHandler;
 
 
 $menu = Menu::simple()
-    ->addItem("string", "/lol")
-    ->addItem("shit")
-    ->addItem(Menu::subMenu("farts")
-              ->addItem("laksjdflka", "/farts.php")
-              ->addItem("balls")
-    )
+    ->align("r")
+    ->addItem("string", "/lol", "is-active")
+    ->addItem("double")
     ;
 echo $menu->saveHTML();
-d($menu->saveHTML());
+//d($menu->saveHTML());

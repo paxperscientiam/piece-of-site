@@ -2,7 +2,7 @@
 
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\Submenu;
 
-class Base
+class Base extends Foundation\XForm
 {
     public $menu;
     public $doc;
@@ -19,15 +19,9 @@ class Base
         //
         $this->ele = $this->doc->createChunk("ul");
         //
-        if (isset($this->menu->classes)) {
-            $this->doc->setClasses($this->menu->classes, $this->ele);
-        }
-        if (isset($this->menu->menuData)) {
-            $this->doc->setData($this->menu->menuData, $this->ele);
-        }
     }
 
-    public function addItem($thing, string $blob = "#")
+    public function addItem($thing, string $blob = "#", string $itemClasses = "")
     {
         $this->lii = $this->doc->createElement("li");
         $this->laa = $this->doc->createElement("a");
@@ -37,6 +31,9 @@ class Base
 
         if (is_string($thing)) {
             $this->laa->textContent = $thing;
+            if (strlen($itemClasses) > 0) {
+                $this->lii->setAttribute("class", $itemClasses);
+            }
         }
         if ($thing instanceof Submenu) {
             $this->laa->textContent = $thing->header;
@@ -57,6 +54,12 @@ class Base
 
     public function saveHTML()
     {
+        if (isset($this->menu->classes)) {
+            $this->doc->setClasses($this->menu->classes, $this->ele);
+        }
+        if (isset($this->menu->menuData)) {
+            $this->doc->setData($this->menu->menuData, $this->ele);
+        }
         return $this->doc->saveHTML();
     }
 }

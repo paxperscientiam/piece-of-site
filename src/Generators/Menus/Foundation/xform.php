@@ -2,23 +2,31 @@
 
 use Ramoose\PieceOfSite\Generators\Menus\Base;
 
-class XForm extends Base
+class XForm
 {
+    public $classes = [];
+
     public function align(string $alignment)
     {
+        $this->classes = $this->menu->classes;
         $alignment = strtolower($alignment);
         try {
             switch ($alignment) {
                 case "right":
-                    self::$classes[] = "align-right";
+                case "r":
+                    $this->menu->classes[] = "align-right";
                     break;
                 case "center":
-                    self::$classes[] = "align-center";
+                case "c":
+                    $this->menu->classes[] = "align-center";
                     break;
                 case "expanded":
-                    self::$classes[] = "expanded";
+                case "e":
+                case "x":
+                    $this->menu->classes[] = "expanded";
                     break;
                 case "left":
+                case "l":
                     // 'left' is the default alignment
                     break;
                 default:

@@ -1,6 +1,9 @@
 {
     "name": "ramoose/piece-of-site",
+    "version": "1.0.0-dev",
+    "type": "library",
     "description": "Generate HTML5 element blocks with some ease.",
+    "keywords": ["HTML5", "Menus", "Foundation"],
     "author": [
         {
             "name": "Christopher David Ramos",
