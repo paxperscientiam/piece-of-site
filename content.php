@@ -11,10 +11,13 @@ use Monolog\ErrorHandler;
 ///////////////
 
 
-$menu = Menu::simple()
-    ->align("r")
+$menu = Menu::drilldown()
+    ->orient("v")
     ->addItem("string", "/lol", "is-active")
-    ->addItem("double")
+    ->addItem("double", "/double")
+    ->addItem(Menu::submenu("candy")
+              ->addItem("chocolate")
+    )
     ;
 echo $menu->saveHTML();
 //d($menu->saveHTML());

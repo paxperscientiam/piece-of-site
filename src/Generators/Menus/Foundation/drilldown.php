@@ -10,7 +10,7 @@ class Drilldown
 
     public function __construct()
     {
-        $this->classes[] = "drilldown";
+        $this->classes[] = "menu drilldown";
         $this->subMenuClasses[] = "nested vertical menu";
         $this->menuData[] = "data-drilldown";
     }

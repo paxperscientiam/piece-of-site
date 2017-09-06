@@ -40,12 +40,13 @@ class XForm
 
     public function orient(string $orientation)
     {
+        $this->classes = $this->menu->classes;
         $orientation = strtolower($orientation);
         try {
             switch ($orientation) {
                 case "v":
                 case "vertical":
-                    self::$classes[] = "vertical";
+                    $this->menu->classes[] = "vertical";
                     break;
                 case "h":
                 case "horizontal":
