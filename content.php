@@ -12,17 +12,17 @@ use Monolog\ErrorHandler;
 
 
 $menu = Menu::drilldown()
-    ->addItem("string", "/lol", "is-active")
-    ->addItem("double", "/double")
-    ->addItem(Menu::submenu("candy")
-              ->addItem("chocolate", "", "is-active")
-              ->addItem("vanilla")
-              ->addItem("strawberry")
-              ->addItem(Menu::submenu("pudding")
-                        ->addItem("kozyshack")
-                        ->addItem("generic")
-              )
+    ->addItem("USA")
+    ->addItem("Canada")
+    ->addItem(Menu::subMenu("Cities")
+              ->addItem("Toronto")
+              ->addItem("Montreal")
     )
+    ->addItem(Menu::subMenu("Dinosaurs")
+              ->addItem("Trex")
+              ->addItem(Menu::subMenu("Pterosaur")
+                        ->addItem("Pteranodon")))
+    ->addItem("Barf")
     ;
 echo $menu->saveHTML();
 //d($menu->saveHTML());
