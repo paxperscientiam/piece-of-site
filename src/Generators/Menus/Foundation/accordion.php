@@ -1,6 +1,6 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus\Foundation;
 
-class Drilldown
+class Accordion
 {
     public $classes = [];
     public $subMenuClasses = [];
@@ -8,8 +8,8 @@ class Drilldown
 
     public function __construct()
     {
-        $this->classes[] = "menu vertical drilldown";
+        $this->classes[] = "menu vertical accordion-menu";
         $this->subMenuClasses[] = "menu nested vertical";
-        $this->menuData[] = "data-drilldown";
+        $this->menuData[] = "data-accordion-menu";
     }
 }

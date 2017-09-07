@@ -1,12 +1,13 @@
 <?PHP namespace Ramoose\PieceOfSite\Generators\Menus\Foundation;
 
-use Ramoose\PieceOfSite\Generators\Menus\Base;
-
 class Dropdown
 {
     public $classes = [];
     public $subMenuClasses = [];
     public $menuData = [];
+    //
+    // orientation
+    public $vertical;
 
     public function __construct()
     {
@@ -14,6 +15,6 @@ class Dropdown
         $this->subMenuClasses[] = "menu";
         $this->menuData[] = "data-dropdown-menu";
         //
-        //        $this->firstllClass[] = "is-dropdown-submenu-parent";
+        $this->vertical = "vertical";
     }
 }

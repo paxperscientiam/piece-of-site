@@ -2,7 +2,7 @@
 
 use Ramoose\PieceOfSite\Generators\Menus\Foundation\Submenu;
 
-class Base extends Foundation\XForm
+class Base
 {
     public $menu;
     public $doc;
@@ -61,5 +61,44 @@ class Base extends Foundation\XForm
             $this->doc->setData($this->menu->menuData, $this->ele);
         }
         return $this->doc->saveHTML();
+    }
+
+    public function orient(string $orientation)
+    {
+        switch ($orientation) {
+            case "v":
+            case "vertical":
+                $this->menu->classes[] = $this->menu->vertical;
+                break;
+            case "h":
+            case "horizontal":
+                $this->menu->classes[] = $this->menu->horizontal;
+                break;
+        }
+        return $this;
+    }
+
+    public function align($alignment)
+    {
+        switch ($alignment) {
+            case "l":
+            case "left":
+                $this->menu->classes[] = $this->menu->left;
+                break;
+            case "r":
+            case "right":
+                $this->menu->classes[] = $this->menu->right;
+                break;
+            case "c":
+            case "center":
+                $this->menu->classes[] = $this->menu->center;
+                break;
+            case "x":
+            case "expand":
+            case "expanded":
+                $this->menu->classes[] = $this->menu->expand;
+                break;
+        }
+        return $this;
     }
 }
