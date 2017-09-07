@@ -17,6 +17,6 @@ class Basic
     public function __construct()
     {
         $this->classes[] = "menu";
-        $this->subMenuClasses[] = "menu nested vertical";
+        $this->subMenuClasses[] = "menu nested";
     }
 }

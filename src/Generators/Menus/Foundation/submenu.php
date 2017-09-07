@@ -26,6 +26,7 @@ class SubMenu
             $link->textContent = $thing->header;
 
             $item->appendChild($thing->subUll);
+            $thing->subUll->setAttribute("class", "menu");
 
             $this->subUll->appendChild($item);
         }

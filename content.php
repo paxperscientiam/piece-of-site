@@ -11,9 +11,7 @@ use Monolog\ErrorHandler;
 ///////////////
 
 
-$menu = Menu::basic()
-    ->align("x")
-    ->orient("v")
+$menu = Menu::drilldown()
     ->addItem("string", "/lol", "is-active")
     ->addItem("double", "/double")
     ->addItem(Menu::submenu("candy")
