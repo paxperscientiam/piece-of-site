@@ -7,18 +7,34 @@ class SubMenu
     public function __construct($dom, string $header = null)
     {
         $this->subUll = $dom->createElement("ul");
-        $this->header = $header;
+
         $this->dom = $dom;
+        $this->header = $header;
+        ///
     }
 
-    public function addItem($thing, string $blob = "#")
+    public function addItem($thing, string $blob = '#')
     {
         $item = $this->dom->createElement("li");
         $link = $this->dom->createElement("a");
-        $link->textContent = $thing;
+
         $link->setAttribute("href", $blob);
+
         $item->appendChild($link);
-        $this->subUll->appendChild($item);
+
+        if ($thing instanceof $this) {
+            $link->textContent = $thing->header;
+
+            $item->appendChild($thing->subUll);
+
+            $this->subUll->appendChild($item);
+        }
+
+        if (is_string($thing)) {
+            $link->textContent = $thing;
+            $this->dom->appendChild($item, $this->subUll);
+        }
+
         //
         return $this;
     }

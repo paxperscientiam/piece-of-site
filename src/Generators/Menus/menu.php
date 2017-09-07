@@ -34,7 +34,8 @@ class Menu
                 if (strcasecmp($name, "submenu") === 0) {
                     self::$container->add('Menu', $menuClass)
                         ->withArgument("Document")
-                        ->withArgument(new \League\Container\Argument\RawArgument($arguments[0]));
+                        ->withArgument(new \League\Container\Argument\RawArgument($arguments[0]))
+                        ;
                     return self::$container->get('Menu');
                 }
                 //
