@@ -1,5 +1,5 @@
 <?PHP
-require_once "vendor/autoload.php";
+require_once "../../vendor/autoload.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -12,10 +12,6 @@ require_once "vendor/autoload.php";
     <title>Document</title>
     </head>
     <body>
-    <?PHP
-    require_once "content.php";
-
-    ?>
     <script src="vendor/zurb/foundation/dist/js/foundation.min.js"></script>
     <script>
     $(document).foundation();

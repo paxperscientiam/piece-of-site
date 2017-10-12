@@ -17,7 +17,8 @@
     },
     "require": {
         "php": ">=7.0",
-        "league/container": "^2.4"
+        "league/container": "^2.4",
+        "vtardia/simphle": "^1.0"
     },
     "require-dev": {
         "kint-php/kint": "^2.1",
@@ -26,6 +27,6 @@
         "components/jquery": "^3.2"
     },
     "scripts": {
-        "serve": "@php -S localhost:8000"
+        "serve": "vendor/vtardia/simphle/bin/simphle"
     }
 }
