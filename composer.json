@@ -27,6 +27,9 @@
         "components/jquery": "^3.2"
     },
     "scripts": {
-        "serve": "vendor/vtardia/simphle/bin/simphle"
+        "serve": "app/vendor/vtardia/simphle/bin/simphle"
+    },
+    "config": {
+        "vendor-dir": "app/vendor"
     }
 }

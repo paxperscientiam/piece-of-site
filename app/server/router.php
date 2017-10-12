@@ -1,7 +1,7 @@
 <?php
 // Set timezone
 date_default_timezone_set("UTC");
-
+echo dirname(__FILE__, 2);die();
 // Directory that contains error pages
 define("ERRORS", dirname(__FILE__) . "/views/errors");
 
@@ -38,6 +38,8 @@ if (empty($ext)) {
 if (file_exists($_SERVER["DOCUMENT_ROOT"] . $path)) {
     return false;
 }
+
+
 
 // default behavior
 logAccess(404);
