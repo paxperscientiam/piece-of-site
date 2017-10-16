@@ -1,0 +1,3 @@
+<?PHP
+
+$doc = new DOMDocum
