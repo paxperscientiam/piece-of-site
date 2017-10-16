@@ -15,10 +15,19 @@ define("DIRECTORY_INDEX", "index.php");
 // Optional array of authorized client IPs for a bit of security
 $config["hostsAllowed"] = array();
 
-function logAccess($status = 200) {
-    file_put_contents("php://stdout", sprintf("[%s] %s:%s [%s]: %sn",
-                                              date("D M j H:i:s Y"), $_SERVER["REMOTE_ADDR"],
-                                              $_SERVER["REMOTE_PORT"], $status, $_SERVER["REQUEST_URI"]));
+function logAccess($status = 200)
+{
+    file_put_contents(
+        "php://stdout",
+        sprintf(
+            "[%s] %s:%s [%s]: %sn",
+            date("D M j H:i:s Y"),
+            $_SERVER["REMOTE_ADDR"],
+            $_SERVER["REMOTE_PORT"],
+            $status,
+            $_SERVER["REQUEST_URI"]
+        )
+    );
 }
 
 // Parse allowed host list
@@ -43,15 +52,32 @@ if (file_exists($_SERVER["DOCUMENT_ROOT"] . $path)) {
     return false;
 }
 
-
-$resource = VIEWS.$_SERVER["REQUEST_URI"];
-if (file_exists($resource)) {
-    require_once $resource;
-    return true;
+if ($ext === "php") {
+    $resource = VIEWS.$_SERVER["REQUEST_URI"];
+    if (file_exists($resource)) {
+        require_once $resource;
+        return true;
+    }
 }
 
+if ($ext === "php") {
+    $resource = VIEWS.$_SERVER["REQUEST_URI"];
+    if (file_exists($resource)) {
+        require_once $resource;
+        return true;
+    }
+}
+
+if (in_array($ext, ["js", "css"])) {
+    $resource = VENDOR.$_SERVER["REQUEST_URI"];
+    if (file_exists($resource)) {
+        require_once $resource;
+        return true;
+    }
+}
 
 // default behavior
-    logAccess(404);
+logAccess(404);
 http_response_code(404);
 include ERRORS . "/404.php";
+//
