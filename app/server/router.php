@@ -49,35 +49,41 @@ if (empty($ext)) {
 
 //If the file exists then return false and let the server handle it
 if (file_exists($_SERVER["DOCUMENT_ROOT"] . $path)) {
+    d($_SERVER);
     return false;
 }
 
 if ($ext === "php") {
     $resource = VIEWS.$_SERVER["REQUEST_URI"];
     if (file_exists($resource)) {
-        require_once $resource;
+        //  $_SERVER["REQUEST_URI"] = "/";
+        // d($_SERVER);
+        require_once $_SERVER["DOCUMENT_ROOT"]."/".DIRECTORY_INDEX;
         return true;
     }
+    exit;
 }
 
-if ($ext === "php") {
-    $resource = VIEWS.$_SERVER["REQUEST_URI"];
-    if (file_exists($resource)) {
-        require_once $resource;
-        return true;
-    }
-}
 
 if (in_array($ext, ["js", "css"])) {
     $resource = VENDOR.$_SERVER["REQUEST_URI"];
+    $_SERVER['SCRIPT_NAME'] = $resource;
     if (file_exists($resource)) {
+        //
+
+
+
+
+
         require_once $resource;
-        return true;
+        return false;
     }
+    exit;
 }
 
 // default behavior
 logAccess(404);
 http_response_code(404);
 include ERRORS . "/404.php";
+exit;
 //
